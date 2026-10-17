@@ -1,0 +1,25 @@
+:root {
+  color-scheme: dark;
+  --navy: #05070b;
+  --surface: #07101a;
+  --surface-raised: #0a111b;
+  --text: #ffffff;
+  --muted: #b6c0cc;
+  --quiet: #788391;
+  --blue: #2e8bff;
+  --blue-light: #79b5ff;
+  --red: #f01818;
+  --red-action: #df1616;
+  --line: rgba(255, 255, 255, 0.08);
+  --max-width: 1440px;
+  --font: Arial, sans-serif;
+  --display: "Biler Display", Arial, sans-serif;
+  --type-action-size: 0.66rem;
+  --type-action-weight: 700;
+  --type-action-leading: 1.4;
+  --type-action-tracking: 0.06em;
+  --type-label-size: 0.6rem;
+  --type-label-leading: 1.6;
+  --type-label-tracking: 0.15em;
+  --type-display-tracking: 0.01em;
+}

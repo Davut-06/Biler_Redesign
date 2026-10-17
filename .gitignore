@@ -1,0 +1,27 @@
+node_modules/
+dist/
+/.product-review/
+*.local
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+
+# Logs and temporary backups
+*.log
+*.tmp
+*.bak
+*~
+
+# OS and local IDE files
+.DS_Store
+Thumbs.db
+Desktop.ini
+/.idea/
+/.vscode/
+
+# Private key and certificate containers
+*.pem
+*.key
+*.p12
+*.pfx

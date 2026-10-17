@@ -1,0 +1,230 @@
+{
+  "skip": "Skip to content",
+  "nav": {
+    "label": "Main navigation",
+    "products": "The collection",
+    "about": "Our character",
+    "partners": "For partners",
+    "partner": "Become a partner",
+    "language": "Language",
+    "open": "Open menu",
+    "close": "Close menu"
+  },
+  "hero": {
+    "lineOne": "PREMIUM",
+    "lineTwo": "TASTE & ENERGY",
+    "lineThree": "ON A NEW LEVEL",
+    "description": "Bold flavours, contemporary style and Biler character in every bottle.",
+    "cta": "EXPLORE PRODUCTS",
+    "secondary": "BECOME A PARTNER",
+    "benefitsLabel": "The Biler character",
+    "benefits": {
+      "taste": "Bold flavour",
+      "quality": "Premium quality",
+      "refreshment": "Refreshing character"
+    },
+    "composition": "The Biler drinks collection",
+    "signature": "Own your taste. Own your character.",
+    "scroll": "Explore the collection"
+  },
+  "products": {
+    "scenes": {
+      "mohito": "Fresh. Bold. Iconic.",
+      "vitaminized": "Fruit. Vitamins. Energy.",
+      "coffee": "Cold. Strong. Different.",
+      "water": "Pure. Crisp. Essential.",
+      "previous": "Previous collection",
+      "next": "Next collection",
+      "explore": "Find your flavour",
+      "select": "Choose a flavour"
+    },
+    "eyebrow": "OUR COLLECTION",
+    "title": "BOLD FLAVOURS",
+    "titleSecond": "FOR BRIGHT MOMENTS",
+    "description": "Mojito, bright fruit flavours, coffee and water. The complete collection with unmistakable Biler character.",
+    "filter": "Drink categories",
+    "count": "{{count}} drinks displayed",
+    "inquire": "Distribution enquiries",
+    "inquireAbout": "Ask about distributing {{product}}",
+    "imageNote": "Find your Biler flavour.",
+    "previous": "Previous drinks",
+    "next": "Next drinks",
+    "gallery": "Biler drinks collection",
+    "swipe": "Explore the collection"
+  },
+  "categories": {
+    "all": "All",
+    "mohito": "Mojito",
+    "vitaminized": "Vitaminized",
+    "coffee": "Coffee",
+    "water": "Water"
+  },
+  "productNames": {
+    "mohito-classic": "CLASSIC MOJITO",
+    "orange": "Orange",
+    "pineapple": "Pineapple",
+    "pomegranate": "Pomegranate",
+    "raspberry": "Raspberry",
+    "smorodina": "Blackcurrant",
+    "cold-coffee": "Iced Black Coffee",
+    "carbonated-coffee": "Carbonated Coffee",
+    "strawberry-mohito": "STRAWBERRY MOJITO",
+    "bilberry-mohito": "BILBERRY MOJITO",
+    "berry": "Berry",
+    "lemon": "Lemon",
+    "mineral-water": "Mineral Water",
+    "carbonated-water": "Carbonated Water"
+  },
+  "flavours": {
+    "mohito-classic": "A fresh take on a classic.",
+    "orange": "Bright citrus flavor with a refreshing character.",
+    "pineapple": "A taste of the tropics.",
+    "pomegranate": "Bright pomegranate flavor.",
+    "raspberry": "Delicate raspberry flavor.",
+    "smorodina": "Rich blackcurrant flavor.",
+    "cold-coffee": "Coffee with character.",
+    "carbonated-coffee": "Coffee flavor with refreshing bubbles.",
+    "strawberry-mohito": "Strawberry notes with mojito freshness.",
+    "bilberry-mohito": "Bilberry flavour with a refreshing character.",
+    "berry": "Bold mixed berry flavour.",
+    "lemon": "Fresh citrus character.",
+    "mineral-water": "Everyday refreshment.",
+    "carbonated-water": "Refreshing character with gentle bubbles."
+  },
+  "benefits": {
+    "eyebrow": "WHY BILER",
+    "title": "MORE THAN",
+    "titleSecond": "JUST A DRINK",
+    "description": "Flavour, detail and character. Four ideas that shape the way we think about drinks.",
+    "ingredients": {
+      "title": "NATURAL INGREDIENTS",
+      "text": "Inspired by the freshness of fruits, berries, and familiar natural flavors. We aim for a bright, clean taste character in every drink."
+    },
+    "quality": {
+      "title": "PREMIUM QUALITY",
+      "text": "Attention to detail — from flavor combinations to the experience of every bottle. For us, quality begins with thoughtful execution."
+    },
+    "taste": {
+      "title": "CONTEMPORARY TASTE",
+      "text": "Familiar flavors in a modern interpretation. Bold combinations, clean presentation, and a distinct character for every Biler range."
+    },
+    "energy": {
+      "title": "ENERGY, VITAMINS & FRESHNESS",
+      "text": "Biler vitaminized drinks combine bold flavor, refreshing character, and a blend of vitamins C, B2, B3, B5 and B6."
+    }
+  },
+  "partner": {
+    "benefitsLabel": "WHY PARTNERS CHOOSE US",
+    "advantages": {
+      "terms": { "title": "FLEXIBLE TERMS", "text": "A flexible approach to cooperation and supply conditions." },
+      "supply": { "title": "STABLE SUPPLY", "text": "Reliable logistics and consistent work with partners." },
+      "marketing": { "title": "MARKETING SUPPORT", "text": "Materials and support to help develop the brand in the market." },
+      "trust": { "title": "RELIABLE PARTNERSHIP", "text": "A long-term approach and attention to partners at every stage." }
+    },
+    "eyebrow": "FOR PARTNERS",
+    "title": "BECOME",
+    "highlight": "A DISTRIBUTOR",
+    "description": "Grow your business with Biler.\nAttractive terms, reliable supply and support at every stage.",
+    "benefits": {
+      "terms": "Attractive terms",
+      "supply": "Reliable supply",
+      "marketing": "Marketing support",
+      "trust": "A trusted partnership"
+    },
+    "formTitle": "Let's work together",
+    "fields": {
+      "company": "Company",
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "placeholders": {
+      "company": "Company name",
+      "name": "Your name",
+      "phone": "+993 …",
+      "email": "you@company.com"
+    },
+    "required": "Please complete this field.",
+    "notice": "All fields are required. Your enquiry opens as a draft in your email app for you to review and send. This website does not submit or store your details.",
+    "submit": "SEND ENQUIRY",
+    "ready": "Your draft is ready. Open your email app, review the details and send it to our team.",
+    "openEmail": "Open email draft",
+    "subject": "Biler Drinks — partnership enquiry"
+  },
+  "footer": {
+    "tagline": "Bold flavours. Independent character. Your own rhythm.",
+    "statement": "A taste worth remembering",
+    "products": "The collection",
+    "partners": "For partners",
+    "coffeeWater": "Coffee",
+    "distribution": "Distribution enquiries",
+    "contact": "Get in touch",
+    "follow": "Stay connected",
+    "instagram": "Biler on Instagram (new tab)",
+    "whatsapp": "Message Biler on WhatsApp (new tab)",
+    "rights": "All rights reserved.",
+    "top": "Back to top"
+  },
+  "header": {
+    "home": "Biler — home",
+    "label": "Main navigation",
+    "products": "Products",
+    "about": "About the brand",
+    "partners": "Partners",
+    "contacts": "Contact",
+    "cta": "Become a partner",
+    "language": "Language",
+    "open": "Open menu",
+    "close": "Close menu"
+  },
+  "brand": {
+    "eyebrow": "BRAND CHARACTER",
+    "title": "BILER — A TASTE",
+    "titleSecond": "THAT SPEAKS",
+    "titleThird": "FOR ITSELF",
+    "description": "Biler brings together bold flavor, modern character, and attention to detail. We create drinks that are easy to recognize and made to be remembered.",
+    "pillarFlavor": "BOLD FLAVOR",
+    "pillarCharacter": "MODERN CHARACTER",
+    "pillarStyle": "OWN STYLE",
+    "valueTaste": "YOUR TASTE",
+    "valueCharacter": "YOUR CHARACTER",
+    "cta": "FIND YOUR FLAVOR",
+    "caption": "Own your taste. Own your character."
+  },
+  "productDetail": {
+    "milligrams": "mg",
+    "view": "View details",
+    "back": "Back to products",
+    "volume": "Volume",
+    "vitamins": "Vitamins",
+    "ingredients": "Ingredients",
+    "nutrition": "Nutrition / product information",
+    "pending": "Product information will be added",
+    "notFound": "Product not found",
+    "notFoundText": "Explore the collection to find your Biler flavour.",
+    "vitamin": "Vitamin",
+    "vitaminsPending": "Vitamin information will be added",
+    "features": {
+      "refreshing": "Refreshing taste",
+      "vitaminized": "Vitaminized",
+      "nonAlcoholic": "Non-alcoholic",
+      "carbonated": "Carbonated"
+    },
+    "descriptions": {
+      "orange": "A refreshing drink with the bright taste of ripe orange, juicy citrus sweetness, and a light sparkling finish. Its vitaminized formula makes the flavor rich, uplifting, and especially enjoyable when served chilled.",
+      "lemon": "A refreshing lemon flavor with a pleasant citrus tang and a clean, cool finish. Light carbonation enhances its freshness, making it an ideal choice for a hot day.",
+      "pineapple": "The tropical taste of ripe pineapple opens with sweet juicy notes and a soft exotic freshness. The sparkling base makes the drink bright, light, and especially refreshing.",
+      "pomegranate": "Rich pomegranate flavor combines noble fruit sweetness with a subtle tartness and a distinctive finish. This drink feels bold, deep, and truly premium.",
+      "raspberry": "The delicate taste of ripe raspberry unfolds with juicy berry notes and soft sweetness. Light carbonation adds freshness and makes the flavor even more lively and enjoyable.",
+      "smorodina": "Bold blackcurrant flavor combines rich berry notes, a gentle tang, and a deep aroma. Its refreshing character makes the drink vibrant and memorable.",
+      "mohito-classic": "A refreshing blend of lime and mint creates a bright, cooling combination with a clean uplifting finish. The drink captures the spirit of a classic mojito in a non-alcoholic and refreshing format.",
+      "strawberry-mohito": "Sweet strawberry, fresh mint, and juicy lime come together in a bright fruity-refreshing blend. The drink feels light, fresh, and ideal for those who enjoy softer, more aromatic flavors.",
+      "bilberry-mohito": "Juicy bilberry combined with mint and lime creates a unique, refreshing, and memorable taste. The drink brings together berry depth and cool mojito freshness in one bottle.",
+      "berry": "A rich blend of berry flavors creates a bold and energetic character. Its full taste, pleasant sweetness, and refreshing finish make it expressive and modern.",
+      "cold-coffee": "A refreshing coffee drink with the deep taste of roasted beans and a cool invigorating character. It is an ideal choice for those who appreciate rich coffee flavor in a light chilled format.",
+      "carbonated-water": "Pure carbonated drinking water with a light refreshing taste and soft bubbles. Perfect for everyday use and excellent for quenching thirst.",
+      "mineral-water": "Refreshing carbonated water with a smooth taste and a balanced character. Light mineralization makes the drink pleasant, clean, and especially suitable for everyday enjoyment.",
+      "carbonated-coffee": "Deep coffee flavor with roasted bean notes and a light sparkle. An unexpected blend of coffee character and sparkling freshness, especially enjoyable when served chilled."
+    }
+  }
+}

@@ -1,0 +1,776 @@
+﻿.hero {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--navy);
+  color: #fff;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  height: 140px;
+  pointer-events: none;
+  background: linear-gradient(
+    0deg,
+    var(--navy) 8%,
+    rgb(5 7 11 / 75%) 38%,
+    transparent
+  );
+}
+.mountains {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  pointer-events: none;
+}
+.darkOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      #040810 0%,
+      rgb(4 8 16 / 90%) 29%,
+      rgb(4 8 16 / 48%) 60%,
+      rgb(4 8 16 / 30%)
+    ),
+    linear-gradient(
+      180deg,
+      rgb(4 8 16 / 48%),
+      transparent 30%,
+      transparent 70%,
+      var(--navy)
+    );
+}
+.blueLight,
+.redLight {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(65px);
+}
+.blueLight {
+  inset: 24% 20% 15% 48%;
+  background: radial-gradient(ellipse, rgb(46 139 255 / 48%), transparent 72%);
+}
+.redLight {
+  inset: 26% -6% 12% 77%;
+  background: radial-gradient(ellipse, rgb(240 24 24 / 28%), transparent 72%);
+}
+.inner {
+  position: relative;
+  z-index: 3;
+  width: min(1440px, calc(100% - 96px));
+  margin-inline: auto;
+  padding-block: 128px 94px;
+  display: grid;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  align-items: center;
+  gap: clamp(28px, 3vw, 52px);
+}
+.copy {
+  position: relative;
+  z-index: 8;
+  min-width: 0;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 25px;
+  font-size: 0.65rem;
+  letter-spacing: 0.26em;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #d9e2ef;
+}
+.eyebrow > span {
+  width: 30px;
+  height: 2px;
+  background: var(--blue);
+}
+.headline {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 4.6vw, 4.9rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: var(--type-display-tracking);
+  text-transform: uppercase;
+}
+.headline > span {
+  display: block;
+  white-space: nowrap;
+}
+.accent {
+  color: var(--red);
+}
+.description {
+  max-width: 370px;
+  margin: 25px 0 0;
+  color: #bbc5d1;
+  font-size: 0.94rem;
+  line-height: 1.8;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 18px 22px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: var(--type-action-size);
+  font-weight: var(--type-action-weight);
+  line-height: var(--type-action-leading);
+  letter-spacing: var(--type-action-tracking);
+  text-transform: uppercase;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease;
+}
+.primary {
+  gap: 23px;
+  background: var(--red-action);
+  border-color: var(--red);
+  color: white;
+  box-shadow: 0 8px 30px rgb(240 24 24 / 12%);
+}
+.primary:hover {
+  background: #f01818;
+  border-color: #ff4949;
+}
+.secondary {
+  color: #e1e7ee;
+  border-color: rgb(187 204 225 / 30%);
+  background: rgb(5 10 18 / 30%);
+}
+.secondary:hover {
+  background: #142032;
+  border-color: #8095af;
+}
+.benefits {
+  display: flex;
+  gap: 24px;
+  padding: 23px 0 0;
+  margin: 32px 0 0;
+  list-style: none;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+.benefits li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #bbc5d1;
+  font-size: 0.65rem;
+  line-height: 1.5;
+}
+.benefits svg {
+  flex-shrink: 0;
+  color: #83b9ff;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* All photography remains in the data-driven image elements above these scene layers. */
+.composition {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 0.86;
+  margin: 0;
+  isolation: isolate;
+}
+.composition::before {
+  content: "";
+  position: absolute;
+  inset: 10% -2% 7%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 22% 54%, rgb(46 139 255 / 33%), transparent 54%),
+    radial-gradient(ellipse at 87% 52%, rgb(240 24 24 / 22%), transparent 54%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+.spotlight {
+  position: absolute;
+  inset: 10% 29% 15%;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse,
+    rgb(255 238 192 / 34%),
+    rgb(255 255 245 / 14%) 40%,
+    transparent 72%
+  );
+  filter: blur(26px);
+  pointer-events: none;
+}
+.ground {
+  position: absolute;
+  inset: auto 3% 4%;
+  height: 13%;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    #14212d 12%,
+    #03070d 54%,
+    transparent 72%
+  );
+  box-shadow: 0 18px 26px rgb(0 0 0 / 35%);
+}
+.ground::after {
+  content: "";
+  position: absolute;
+  inset: 18% 15% 35%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(129 178 221 / 12%),
+    rgb(231 206 148 / 18%),
+    rgb(166 110 173 / 10%),
+    transparent
+  );
+  filter: blur(9px);
+  border-radius: 50%;
+}
+.bottle {
+  position: absolute;
+  transform-origin: 50% 92%;
+}
+.bottleEntrance,
+.float,
+.bottle img {
+  width: 100%;
+  height: 100%;
+}
+.bottle img {
+  position: absolute;
+  left: 50%;
+  bottom: var(--image-bottom, 0%);
+  height: var(--image-scale, 100%);
+  width: auto;
+  max-width: none;
+  transform: translateX(-50%);
+  object-fit: contain;
+  filter: none;
+}
+.bottle::before {
+  content: "";
+  position: absolute;
+  inset: 25% 14% 8%;
+  background: radial-gradient(ellipse, var(--bottle-light), transparent 72%);
+  opacity: 0.25;
+  filter: blur(22px);
+  pointer-events: none;
+}
+.bottleEntrance {
+  position: relative;
+}
+.center {
+  left: 30%;
+  width: 40%;
+  height: 80%;
+  bottom: 10%;
+  z-index: 8;
+  --bottle-light: #f0d6a5;
+}
+.center::before {
+  inset: 12% 8% 6%;
+  opacity: 0.38;
+}
+.left {
+  left: 12%;
+  width: 40%;
+  height: 74%;
+  bottom: 10%;
+  z-index: 5;
+  --bottle-light: #8cdd68;
+}
+.right {
+  right: 12%;
+  width: 40%;
+  height: 74%;
+  bottom: 10%;
+  z-index: 5;
+  --bottle-light: #ec5682;
+}
+.outerLeft {
+  left: -4%;
+  width: 40%;
+  height: 74%;
+  bottom: 10%;
+  z-index: 3;
+  --bottle-light: #ffac43;
+}
+.outerRight {
+  right: -3%;
+  width: 40%;
+  height: 71.04%;
+  bottom: 11%;
+  z-index: 3;
+  --bottle-light: #ad78de;
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  pointer-events: none;
+}
+.mist {
+  position: absolute;
+  inset: auto -2% 5%;
+  height: 19%;
+  background:
+    radial-gradient(
+      ellipse at 24% 66%,
+      rgb(161 216 255 / 22%),
+      transparent 45%
+    ),
+    radial-gradient(ellipse at 77% 72%, rgb(192 205 224 / 17%), transparent 49%);
+  filter: blur(14px);
+}
+.bottom {
+  position: absolute;
+  z-index: 4;
+  inset: auto 0 23px;
+  width: min(1440px, calc(100% - 96px));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.58rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: #96a4b6;
+}
+.bottom a {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 0;
+  transition: color 180ms ease;
+}
+.bottom a:hover {
+  color: white;
+}
+.bottom a span {
+  font-size: 1rem;
+}
+@media (max-width: 1100px) {
+  .inner,
+  .bottom {
+    width: calc(100% - 64px);
+  }
+  .inner {
+    padding-block: 125px 90px;
+  }
+  .headline {
+    font-size: clamp(2.3rem, 4.6vw, 3.5rem);
+  }
+  .primary,
+  .secondary {
+    padding-inline: 16px;
+    font-size: 0.6rem;
+  }
+  .benefits {
+    gap: 13px;
+  }
+}
+@media (max-width: 800px) {
+  .inner {
+    grid-template-columns: 1fr;
+    padding-block: 128px 72px;
+    gap: 22px;
+  }
+  .headline {
+    font-size: clamp(2.5rem, 8.5vw, 4.8rem);
+  }
+  .composition {
+    width: min(100%, 620px);
+    justify-self: center;
+    aspect-ratio: 1 / 0.95;
+  }
+  .copy {
+    max-width: 620px;
+  }
+  .benefits {
+    max-width: 490px;
+    gap: 25px;
+  }
+  .mountains {
+    object-position: 65% center;
+  }
+  .darkOverlay {
+    background: linear-gradient(
+      180deg,
+      rgb(4 8 16 / 96%) 0%,
+      rgb(4 8 16 / 86%) 35%,
+      rgb(4 8 16 / 25%) 68%,
+      var(--navy) 100%
+    );
+  }
+  .blueLight {
+    inset: 51% 30% 8% 5%;
+  }
+  .redLight {
+    inset: 55% -9% 8% 70%;
+  }
+}
+@media (max-width: 600px) {
+  .inner,
+  .bottom {
+    width: calc(100% - 40px);
+  }
+  .inner {
+    padding-block: 116px 69px;
+    gap: 24px;
+  }
+  .headline {
+    font-size: clamp(2rem, 9.1vw, 3.4rem);
+    line-height: 1.1;
+  }
+  .eyebrow {
+    font-size: 0.58rem;
+    margin-bottom: 22px;
+  }
+  .description {
+    font-size: 0.86rem;
+    line-height: 1.8;
+    margin-top: 23px;
+    max-width: 340px;
+  }
+  .buttons {
+    gap: 10px;
+    margin-top: 25px;
+  }
+  .primary,
+  .secondary {
+    font-size: 0.58rem;
+    min-height: 51px;
+    padding-inline: 14px;
+  }
+  .primary {
+    gap: 14px;
+  }
+  .benefits {
+    display: grid;
+    grid-template-columns: 0.85fr 1.1fr 1.1fr;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 20px;
+  }
+  .benefits li {
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 0.59rem;
+  }
+  .benefits svg {
+    width: 17px;
+    height: 17px;
+  }
+  .composition {
+    aspect-ratio: 1 / 1.02;
+  }
+  .blueLight,
+  .redLight {
+    filter: blur(35px);
+  }
+  .mist {
+    filter: blur(9px);
+  }
+  .bottom {
+    font-size: 0.49rem;
+    letter-spacing: 0.07em;
+    bottom: 16px;
+  }
+  .bottom a {
+    gap: 8px;
+  }
+}
+@media (max-width: 360px) {
+  .primary,
+  .secondary {
+    width: 100%;
+  }
+  .benefits li {
+    flex-direction: column;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .primary,
+  .secondary,
+  .bottom a {
+    transition: none;
+  }
+}
+
+.categoryLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  line-height: 1.8;
+}
+.categoryLine b {
+  color: #586575;
+  font-weight: 400;
+}
+
+@media (max-width: 600px) {
+  .outerLeft,
+  .outerRight {
+    display: none;
+  }
+  .left {
+    left: 0;
+  }
+  .right {
+    right: 0;
+  }
+  .composition {
+    aspect-ratio: 1 / 0.88;
+  }
+  .bottom {
+    position: relative;
+    inset: auto;
+    margin-bottom: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .categoryLine {
+    font-size: 0.49rem;
+    gap: 8px;
+    letter-spacing: 0.13em;
+  }
+}
+
+/* Image framing, entrance and levitation use separate layers so transforms never conflict. */
+.float {
+  position: relative;
+  animation: levitate var(--float-duration) ease-in-out var(--float-delay)
+    infinite;
+}
+.bottleShadow {
+  position: absolute;
+  bottom: -2%;
+  left: 20%;
+  width: 60%;
+  height: 5%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgb(0 0 0 / 85%), transparent 72%);
+  filter: blur(3px);
+  opacity: 0.62;
+  pointer-events: none;
+  animation: shadowBreathe var(--float-duration) ease-in-out var(--float-delay)
+    infinite;
+}
+.center .bottleShadow {
+  opacity: 0.86;
+  height: 6%;
+}
+.center::before {
+  transition: opacity 400ms ease;
+}
+@media (hover: hover) {
+  .composition:hover .center::before {
+    opacity: 0.48;
+  }
+}
+.composition[data-motion="paused"] .float,
+.composition[data-motion="paused"] .bottleShadow {
+  animation-play-state: paused;
+}
+@keyframes levitate {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--float-height));
+  }
+}
+@keyframes shadowBreathe {
+  0%,
+  100% {
+    transform: scaleX(1);
+    filter: blur(3px);
+  }
+  50% {
+    transform: scaleX(1.12);
+    filter: blur(5px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float,
+  .bottleShadow {
+    animation: none;
+  }
+  .center::before {
+    transition: none;
+  }
+}
+
+/* Water stays behind every bottle; ice and mist are confined to the foreground base. */
+/* Clip water to the product scene, below navigation and clear of the text column. */
+.waterBehind {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  clip-path: inset(0 -6% 0 -6%);
+  pointer-events: none;
+}
+/* PNGs keep their native proportions; all effects stay inside the product scene. */
+.splashLeft,
+.splashRight,
+.droplets,
+.iceLeft,
+.iceRight {
+  position: absolute;
+  display: block;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+.splashLeft {
+  left: -10%;
+  bottom: 12%;
+  width: 58.75%;
+  opacity: 0.8;
+  transform: scaleX(-1);
+}
+.splashRight {
+  right: -8%;
+  bottom: 16%;
+  width: 53.75%;
+  opacity: 0.8;
+}
+.droplets {
+  z-index: 9;
+  top: 3%;
+  left: 0;
+  width: 100%;
+  opacity: 0.3;
+  /* Fade out before the label area and keep the center flagship clear. */
+  mask-image: linear-gradient(to bottom, #000 0%, #000 18%, transparent 48%);
+}
+.foregroundIce {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.iceLeft {
+  width: 20%;
+  left: 6%;
+  bottom: 6%;
+  opacity: 0.85;
+}
+.iceRight {
+  width: 16%;
+  right: 12%;
+  bottom: 8%;
+  opacity: 0.8;
+}
+@media (max-width: 1100px) {
+  .splashLeft {
+    width: 55%;
+    bottom: 12%;
+    opacity: 0.8;
+  }
+  .splashRight {
+    width: 51.25%;
+    bottom: 16%;
+    opacity: 0.78;
+  }
+  .iceLeft {
+    width: 18%;
+  }
+  .iceRight {
+    width: 15%;
+  }
+  .droplets {
+    opacity: 0.24;
+  }
+}
+.ground::before {
+  content: "";
+  position: absolute;
+  inset: -15% -4% 10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgb(95 181 250 / 25%),
+    rgb(66 139 208 / 8%) 45%,
+    transparent 72%
+  );
+  filter: blur(10px);
+}
+.reflection {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 19%;
+  overflow: hidden;
+  opacity: 0.13;
+  pointer-events: none;
+  mask-image: linear-gradient(#000, transparent 88%);
+}
+.bottle .reflection img {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 50%;
+  height: calc(var(--image-scale, 100%) / 0.19);
+  width: auto;
+  transform-origin: center top;
+  transform: translateX(-50%) scaleY(-1) translateY(-100%);
+  filter: blur(3px);
+}
+@media (max-width: 600px) {
+  .splashLeft {
+    left: 1%;
+    bottom: 17%;
+    width: 44%;
+    opacity: 0.5;
+  }
+  .splashRight,
+  .droplets {
+    display: none;
+  }
+  .iceLeft {
+    left: 5%;
+    width: 20%;
+  }
+  .iceRight {
+    right: 11%;
+    width: 16%;
+  }
+}

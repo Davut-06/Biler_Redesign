@@ -134,6 +134,7 @@
     "formTitle": "Let's work together",
     "fields": {
       "company": "Company",
+      "taxId": "Tax ID / TIN",
       "name": "Name",
       "phone": "Phone",
       "email": "Email"
@@ -144,11 +145,28 @@
       "phone": "+993 …",
       "email": "you@company.com"
     },
-    "required": "Please complete this field.",
+    "errors": {
+      "companyRequired": "Enter the company name.",
+      "companyShort": "Company name is too short.",
+      "companyLong": "Company name must be 120 characters or fewer.",
+      "companyInvalid": "Enter a valid company name.",
+      "taxIdRequired": "Enter the Tax ID / TIN.",
+      "taxIdInvalid": "Check the Tax ID / TIN.",
+      "nameRequired": "Enter your name.",
+      "nameNumbers": "Name must not contain numbers.",
+      "nameInvalid": "Enter a name of 2–80 characters using letters, spaces, hyphens or apostrophes.",
+      "phoneRequired": "Enter a phone number.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "emailRequired": "Enter an email address.",
+      "emailInvalid": "Enter a valid email address."
+    },
+    "prepareEmail": "PREPARE EMAIL",
+    "emailFallback": "Your enquiry has not been submitted. Continue in your email app to review and send it yourself.",
+    "continueEmail": "Review and send in your email app",
+    "success": "Your enquiry has been sent. We will contact you shortly.",
+    "failure": "Your enquiry could not be sent. Please try again.",
     "notice": "All fields are required. Your enquiry opens as a draft in your email app for you to review and send. This website does not submit or store your details.",
     "submit": "SEND ENQUIRY",
-    "ready": "Your draft is ready. Open your email app, review the details and send it to our team.",
-    "openEmail": "Open email draft",
     "subject": "Biler Drinks — partnership enquiry"
   },
   "footer": {
@@ -156,6 +174,8 @@
     "statement": "A taste worth remembering",
     "products": "The collection",
     "partners": "For partners",
+    "mohito": "Mohito Collection",
+    "pineapple": "Pineapple Vitaminized",
     "coffeeWater": "Coffee",
     "distribution": "Distribution enquiries",
     "contact": "Get in touch",

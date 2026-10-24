@@ -23,8 +23,8 @@ export function Footer() {
         <div className={styles.grid}>
           <nav aria-label={t("footer.products")}>
             <h3>{t("footer.products")}</h3>
-            <a href="#products">Mohito Collection</a>
-            <a href="#products">Pineapple Vitaminized</a>
+            <a href="#products">{t("footer.mohito")}</a>
+            <a href="#products">{t("footer.pineapple")}</a>
             <a href="#products">{t("footer.coffeeWater")}</a>
           </nav>
           <nav aria-label={t("footer.partners")}>
@@ -87,7 +87,9 @@ export function Footer() {
           </span>
           <a href="#home">
             {t("footer.top")}
-            <Icon name="arrow" width="16" height="16" />
+            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M8 16V2M3 7l5-5 5 5" />
+            </svg>
           </a>
         </div>
       </div>

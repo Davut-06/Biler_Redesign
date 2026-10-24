@@ -128,7 +128,31 @@ Deployment under a subdirectory such as `https://example.com/biler/` requires re
 
 ## Distributor Form and Public Contacts
 
-Public business contacts are displayed in DistributorSection and Footer. The form requires company, name, phone, and email. It validates fields and prepares an email draft; the visitor opens, reviews, and sends it through their email client. No backend submission API is currently required. The frontend does not send messages automatically or persist enquiry details.
+Public business contacts are displayed in DistributorSection and Footer. The form requires company, Tax ID / TIN, name, phone, and email. It validates all fields and prepares a mailto draft; the visitor reviews and sends it through their email client. The UI explicitly says the enquiry has **not** been submitted. No backend endpoint exists in this repository, and the frontend does not automatically send or persist enquiries.
+
+Validation is implemented in `src/utils/distributorEnquiry.ts`, separate from the form and transport. All values are trimmed and Unicode-normalized (NFC). Company names accept international letters, numbers and ordinary punctuation (2–120 characters); Tax IDs accept international letters, digits, spaces, hyphens, slashes and dots (5–30 characters, at least one digit); names accept international letters, spaces, hyphens and apostrophes (2–80 characters). Phone numbers allow a leading `+`, digits, spaces, parentheses and hyphens, with 7–15 digits. Email requires a local part and a dotted domain without whitespace. Errors appear inline in RU/EN, on blur and on submit; fields already showing errors are revalidated while typing. All errors are checked before either transport can proceed.
+
+### Connecting real email submission
+
+Implement a server endpoint at **POST `/api/distributor-enquiry`** accepting `Content-Type: application/json`:
+
+```json
+{
+  "company": "Example Company",
+  "taxId": "DE123456789",
+  "name": "Alexander",
+  "phone": "+49 (176) 123-4567",
+  "email": "name@company.com"
+}
+```
+
+The backend must independently normalize and validate every field using the rules above; client validation can be bypassed. Send the enquiry to `biler.distribute@gmail.com` through a server-side mail provider, use a verified sender, and set the validated applicant email as Reply-To. Keep credentials exclusively in the server environment or secret manager, never in React code or `VITE_*` variables. Escape user content when generating HTML emails and prevent header injection. Apply request-size limits and abuse/rate limiting. Do not log enquiry bodies unnecessarily.
+
+Return a 2xx JSON response `{ "success": true }` only after the mail provider confirms acceptance; this is not a guarantee of final inbox delivery. Return non-2xx for invalid requests, throttling or provider failure. Configure `/api/` routing before the SPA fallback, so requests cannot silently receive `index.html`. No real emails should be sent during local validation tests.
+
+The exported `postDistributorEnquiry` helper already posts the normalized, validated JSON payload and rejects non-2xx, malformed responses, or responses without `success: true`. It is deliberately **not called** by the current form. After the backend is deployed, replace the `createEnquiryMailto` branch in `DistributorSection` with an awaited call to `postDistributorEnquiry`. Add a pending state and duplicate-submit protection, then show `partner.success` only after this promise resolves; show `partner.failure` on rejection and retain the entered values for retry. These RU/EN messages are supplied but are not displayed by the mailto fallback. Test successful responses, validation failures, network errors, non-JSON responses and provider errors before enabling direct submission. No API keys are needed in the frontend.
+
+Run `node --test tests/distributorEnquiry.test.mjs` for validation and transport tests, in addition to typecheck and build.
 
 ## Environment Variables
 

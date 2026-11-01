@@ -11,6 +11,7 @@
   background: var(--navy);
   color: #fff;
 }
+.responsiveImage { display: contents; }
 .hero::after {
   content: "";
   position: absolute;
@@ -141,35 +142,57 @@
   min-height: 56px;
   padding: 18px 22px;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 6px;
   font-size: var(--type-action-size);
   font-weight: var(--type-action-weight);
   line-height: var(--type-action-leading);
   letter-spacing: var(--type-action-tracking);
   text-transform: uppercase;
   transition:
-    background 220ms ease,
-    border-color 220ms ease;
+    background 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease,
+    color 250ms ease;
 }
 .primary {
   gap: 23px;
   background: var(--red-action);
   border-color: var(--red);
   color: white;
-  box-shadow: 0 8px 30px rgb(240 24 24 / 12%);
-}
-.primary:hover {
-  background: #f01818;
-  border-color: #ff4949;
+  box-shadow: 0 4px 16px rgb(240 24 24 / 12%);
 }
 .secondary {
   color: #e1e7ee;
   border-color: rgb(187 204 225 / 30%);
   background: rgb(5 10 18 / 30%);
 }
-.secondary:hover {
-  background: #142032;
+@media (hover: hover) and (pointer: fine) {
+  .primary:hover {
+    background: color-mix(in srgb, var(--red-action) 65%, var(--red));
+    border-color: color-mix(in srgb, var(--red-action) 65%, var(--red));
+    box-shadow: 0 6px 22px rgb(240 24 24 / 21%);
+    transform: translateY(-1px);
+  }
+  .secondary:hover {
+    color: var(--text);
+    background: rgb(46 139 255 / 7%);
+    border-color: #8095af;
+    box-shadow: 0 4px 18px rgb(121 181 255 / 9%);
+    transform: translateY(-1px);
+  }
+}
+.primary:active {
+  background: color-mix(in srgb, var(--red-action) 65%, var(--red));
+  box-shadow: 0 2px 12px rgb(240 24 24 / 20%);
+  transform: translateY(1px);
+}
+.secondary:active {
+  color: var(--text);
+  background: rgb(46 139 255 / 10%);
   border-color: #8095af;
+  box-shadow: 0 2px 12px rgb(121 181 255 / 10%);
+  transform: translateY(1px);
 }
 .benefits {
   display: flex;
@@ -526,6 +549,10 @@
   .secondary,
   .bottom a {
     transition: none;
+  }
+  .primary:is(:hover, :active),
+  .secondary:is(:hover, :active) {
+    transform: none;
   }
 }
 

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/brand/biler-header-logo.png";
+import logo from "../../assets/optimized/brand/biler-logo.webp";
 import styles from "./Header.module.css";
 
 const navigation = [
@@ -14,7 +13,6 @@ const navigation = [
 
 export function Header() {
   const { t, i18n } = useTranslation();
-  const reduceMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
@@ -146,7 +144,7 @@ export function Header() {
             href="/#partners"
             onClick={() => setOpen(false)}
           >
-            {t("header.cta")} <span aria-hidden="true">↗</span>
+            {t("header.enquiryCta")} <span aria-hidden="true">↗</span>
           </a>
         </nav>
         <div className={styles.actions}>
@@ -174,15 +172,12 @@ export function Header() {
               </span>
             ))}
           </div>
-          <motion.a
+          <a
             href="/#partners"
             className={styles.cta}
-            whileHover={reduceMotion ? undefined : { y: -2 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            transition={{ duration: 0.2 }}
           >
-            {t("header.cta")} <span aria-hidden="true">↗</span>
-          </motion.a>
+            {t("header.enquiryCta")} <span aria-hidden="true">↗</span>
+          </a>
           <button
             ref={toggleRef}
             type="button"

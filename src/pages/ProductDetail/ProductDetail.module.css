@@ -1,5 +1,6 @@
 ﻿.page { min-height: 100svh; padding: 108px 0 48px; background: #080d16; overflow: clip; }
 .back { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: #a2a8b3; font-size: .75rem; transition: color 180ms ease; }
+.page[data-detail="pomegranate"], .page[data-detail="berry"] { --accent-text: color-mix(in srgb, var(--accent) 70%, white); }
 .backArrow { flex: 0 0 30px; width: 30px; height: 20px; overflow: visible; color: color-mix(in srgb, var(--accent, #b6c0cc) 30%, #a2a8b3); transition: transform 200ms ease, color 200ms ease, filter 200ms ease; }
 @media (hover: hover) and (pointer: fine) {
   .back:hover { color: #e2e6ec; }
@@ -10,7 +11,7 @@
 .back:focus-visible { outline: 2px solid var(--accent, #9bc7ff); outline-offset: 4px; }
 .layout { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); grid-template-rows: 1fr auto auto auto auto 1fr; column-gap: clamp(20px, 3vw, 48px); min-height: clamp(500px, 66svh, 720px); margin-top: 20px; }
 .heading { grid-column: 1; grid-row: 2; min-width: 0; padding: 0 0 24px; animation: enter 280ms ease both; }
-.category { display: flex; align-items: center; gap: 14px; margin: 0 0 12px; color: var(--accent); font-size: var(--type-label-size); line-height: var(--type-label-leading); letter-spacing: var(--type-label-tracking); text-transform: uppercase; }
+.category { display: flex; align-items: center; gap: 14px; margin: 0 0 12px; color: var(--accent-text, var(--accent)); font-size: var(--type-label-size); line-height: var(--type-label-leading); letter-spacing: var(--type-label-tracking); text-transform: uppercase; }
 .category::before { content: ""; width: 30px; height: 1px; background: var(--accent); flex-shrink: 0; }
 .heading h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(3.4rem, 5.8vw, 6rem); letter-spacing: var(--type-display-tracking); line-height: 1.2; text-transform: uppercase; overflow-wrap: break-word; text-wrap: balance; max-width: 650px; }
 .visual { grid-column: 2; grid-row: 1 / 7; align-self: center; position: relative; isolation: isolate; height: clamp(460px, 64svh, 700px); width: 100%; min-width: 0; opacity: 0; transition: opacity 280ms ease; }

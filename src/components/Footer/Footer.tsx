@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/brand/biler-header-logo.png";
+import { Link } from "react-router-dom";
+import logo from "../../assets/optimized/brand/biler-logo.webp";
 import { Icon } from "../shared/Icon";
 import styles from "./Footer.module.css";
 
@@ -23,9 +24,15 @@ export function Footer() {
         <div className={styles.grid}>
           <nav aria-label={t("footer.products")}>
             <h3>{t("footer.products")}</h3>
-            <a href="#products">{t("footer.mohito")}</a>
-            <a href="#products">{t("footer.pineapple")}</a>
-            <a href="#products">{t("footer.coffeeWater")}</a>
+            {(["vitaminized", "mohito", "coffee", "water"] as const).map((category) => (
+              <Link
+                key={category}
+                to="/#products"
+                state={{ productCategory: category, sectionNavigation: true }}
+              >
+                {t(category === "mohito" ? "footer.mohito" : "categories." + category)}
+              </Link>
+            ))}
           </nav>
           <nav aria-label={t("footer.partners")}>
             <h3>{t("footer.partners")}</h3>

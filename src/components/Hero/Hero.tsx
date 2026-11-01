@@ -1,13 +1,13 @@
-import { useRef, type CSSProperties } from "react";
+import { useRef, type CSSProperties, type ImgHTMLAttributes } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { products } from "../../data/products";
-import mountainBackground from "../../assets/backgrounds/hero-mountains.png";
-import splashLeft from "../../assets/hero/splash-left.png";
-import splashRight from "../../assets/hero/splash-right.png";
-import droplets from "../../assets/hero/droplets.png";
-import iceLeft from "../../assets/hero/ice-left.png";
-import iceRight from "../../assets/hero/ice-right.png";
+import mountainBackground from "../../assets/optimized/backgrounds/hero-mountains.webp";
+import splashLeft from "../../assets/optimized/hero/splash-left.webp";
+import splashRight from "../../assets/optimized/hero/splash-right.webp";
+import droplets from "../../assets/optimized/hero/droplets.webp";
+import iceLeft from "../../assets/optimized/hero/ice-left.webp";
+import iceRight from "../../assets/optimized/hero/ice-right.webp";
 import styles from "./Hero.module.css";
 
 const heroBottles = [
@@ -22,6 +22,18 @@ const heroBottles = [
 }));
 
 const benefitKeys = ["taste", "quality", "refreshment"] as const;
+
+// Match the existing 600px visibility breakpoint without fetching hidden artwork.
+const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+function HeroImage({ desktopOnly = false, ...props }: ImgHTMLAttributes<HTMLImageElement> & { desktopOnly?: boolean }) {
+  if (!desktopOnly) return <img {...props} />;
+  return (
+    <picture className={styles.responsiveImage}>
+      <source media="(max-width: 600px)" srcSet={transparentPixel} />
+      <img {...props} />
+    </picture>
+  );
+}
 
 function Arrow() {
   return (
@@ -48,7 +60,6 @@ export function Hero() {
   const reduceMotion = useReducedMotion();
   const sceneRef = useRef<HTMLElement>(null);
   const sceneVisible = useInView(sceneRef);
-  const hover = reduceMotion ? undefined : { y: -3 };
   return (
     <section id="home" className={styles.hero} aria-labelledby="hero-title">
       <img
@@ -84,25 +95,19 @@ export function Hero() {
           </motion.h1>
           <p className={styles.description}>{t("hero.description")}</p>
           <div className={styles.buttons}>
-            <motion.a
+            <a
               className={styles.primary}
               href="#products"
-              whileHover={hover}
-              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              transition={{ duration: 0.2 }}
             >
               {t("hero.cta")}
               <Arrow />
-            </motion.a>
-            <motion.a
+            </a>
+            <a
               className={styles.secondary}
               href="#partners"
-              whileHover={hover}
-              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              transition={{ duration: 0.2 }}
             >
               {t("hero.secondary")}
-            </motion.a>
+            </a>
           </div>
           <ul className={styles.benefits} aria-label={t("hero.benefitsLabel")}>
             {benefitKeys.map((key, index) => (
@@ -154,14 +159,16 @@ export function Hero() {
               alt=""
               decoding="async"
             />
-            <img
+            <HeroImage
+              desktopOnly
               className={styles.splashRight}
               src={splashRight}
               alt=""
               decoding="async"
             />
           </div>
-          <img
+          <HeroImage
+            desktopOnly
             className={styles.droplets}
             src={droplets}
             alt=""
@@ -204,7 +211,7 @@ export function Hero() {
               className={styles.bottle + " " + styles[bottle.position]}
             >
               <div className={styles.reflection} aria-hidden="true">
-                <img src={bottle.image} alt="" decoding="async" />
+                <HeroImage desktopOnly={bottle.position === "outerLeft" || bottle.position === "outerRight"} src={bottle.image} alt="" decoding="async" />
               </div>
               <span className={styles.bottleShadow} aria-hidden="true" />
               <motion.div
@@ -220,7 +227,8 @@ export function Hero() {
                 }}
               >
                 <div className={styles.float}>
-                  <img
+                  <HeroImage
+                    desktopOnly={bottle.position === "outerLeft" || bottle.position === "outerRight"}
                     src={bottle.image}
                     alt={t("productNames." + bottle.id, {
                       defaultValue: bottle.name,

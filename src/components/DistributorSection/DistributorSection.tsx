@@ -69,6 +69,7 @@ export function DistributorSection() {
       aria-labelledby="partners-title"
     >
       <div className={"container " + styles.grid}>
+        <div className={styles.contentColumns}>
         <Reveal className={styles.copy}>
           <p className="eyebrow">{t("partner.eyebrow")}</p>
           <h2 className={styles.title} id="partners-title">
@@ -126,6 +127,7 @@ export function DistributorSection() {
               </li>
             ))}
           </ul>
+        </div>
         </div>
         <Reveal className={styles.formWrap}>
           <form

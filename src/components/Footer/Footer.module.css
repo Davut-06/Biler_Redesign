@@ -174,7 +174,7 @@
   }
   .statement {
     text-align: left;
-    font-size: 0.58rem;
+    font-size: 0.625rem;
     letter-spacing: 0.1em;
   }
   .statement span {
@@ -189,6 +189,7 @@
   }
   .grid h3 {
     margin-bottom: 10px;
+    font-size: 0.65rem;
   }
   .grid > * > a {
     max-width: 100%;
@@ -229,16 +230,19 @@
   .languages button {
     min-width: 44px;
     min-height: 44px;
+    font-size: 0.7rem;
   }
   .bottom {
     align-items: center;
     gap: 14px;
     padding-top: 14px;
-    font-size: 0.59rem;
+    font-size: 0.65rem;
   }
   .bottom a {
     flex-shrink: 0;
     gap: 10px;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 .footer::before {

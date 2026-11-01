@@ -63,7 +63,7 @@
 }
 .category {
   padding: 24px 24px 0;
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
   text-transform: uppercase;
   letter-spacing: var(--type-label-tracking);
   font-size: var(--type-label-size);
@@ -138,7 +138,11 @@
   color: #b3bfcd;
 }
 .meta > span:last-child {
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
+}
+.card[data-product="pomegranate"],
+.card[data-product="berry"] {
+  --accent-text: color-mix(in srgb, var(--accent) 70%, white);
 }
 .card:focus-visible,
 .filters button:focus-visible {

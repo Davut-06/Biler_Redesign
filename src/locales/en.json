@@ -106,7 +106,7 @@
     },
     "taste": {
       "title": "CONTEMPORARY TASTE",
-      "text": "Familiar flavors in a modern interpretation. Bold combinations, clean presentation, and a distinct character for every Biler range."
+      "text": "Familiar flavors in a modern interpretation. Bold combinations, clean presentation, and a distinct character for every Biler range. We bring familiar flavor notes together in a way that feels contemporary and easy to recognize."
     },
     "energy": {
       "title": "ENERGY, VITAMINS & FRESHNESS",
@@ -170,13 +170,11 @@
     "subject": "Biler Drinks — partnership enquiry"
   },
   "footer": {
-    "tagline": "Bold flavours. Independent character. Your own rhythm.",
+    "tagline": "Bold taste. Own character.",
     "statement": "A taste worth remembering",
     "products": "The collection",
     "partners": "For partners",
-    "mohito": "Mohito Collection",
-    "pineapple": "Pineapple Vitaminized",
-    "coffeeWater": "Coffee",
+    "mohito": "Mojito Collection",
     "distribution": "Distribution enquiries",
     "contact": "Get in touch",
     "follow": "Stay connected",
@@ -193,6 +191,7 @@
     "partners": "Partners",
     "contacts": "Contact",
     "cta": "Become a partner",
+    "enquiryCta": "SEND ENQUIRY",
     "language": "Language",
     "open": "Open menu",
     "close": "Close menu"
@@ -228,7 +227,8 @@
       "refreshing": "Refreshing taste",
       "vitaminized": "Vitaminized",
       "nonAlcoholic": "Non-alcoholic",
-      "carbonated": "Carbonated"
+      "carbonated": "Carbonated",
+      "nonCarbonated": "Non-carbonated"
     },
     "descriptions": {
       "orange": "A refreshing drink with the bright taste of ripe orange, juicy citrus sweetness, and a light sparkling finish. Its vitaminized formula makes the flavor rich, uplifting, and especially enjoyable when served chilled.",

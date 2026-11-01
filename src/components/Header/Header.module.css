@@ -115,7 +115,7 @@
   min-height: 48px;
   padding: 14px 22px;
   border: 1px solid var(--red);
-  border-radius: 2px;
+  border-radius: 6px;
   background: var(--red-action);
   color: #fff;
   font-size: var(--type-action-size);
@@ -124,14 +124,28 @@
   letter-spacing: var(--type-action-tracking);
   text-transform: uppercase;
   white-space: nowrap;
+  box-shadow: 0 4px 16px rgb(240 24 24 / 12%);
   transition:
-    background 180ms ease,
-    border-color 180ms ease;
+    background 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease,
+    color 250ms ease;
 }
-.cta:hover,
-.mobileCta:hover {
-  background: #c81414;
-  border-color: #c81414;
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover,
+  .mobileCta:hover {
+    background: color-mix(in srgb, var(--red-action) 65%, var(--red));
+    border-color: color-mix(in srgb, var(--red-action) 65%, var(--red));
+    box-shadow: 0 6px 22px rgb(240 24 24 / 21%);
+    transform: translateY(-1px);
+  }
+}
+.cta:active,
+.mobileCta:active {
+  background: color-mix(in srgb, var(--red-action) 65%, var(--red));
+  box-shadow: 0 2px 12px rgb(240 24 24 / 20%);
+  transform: translateY(1px);
 }
 .cta span,
 .mobileCta span {
@@ -240,7 +254,12 @@
   .nav > a::after,
   .toggle span,
   .languages button,
-  .cta {
+  .cta,
+  .mobileCta {
     transition: none;
+  }
+  .cta:is(:hover, :active),
+  .mobileCta:is(:hover, :active) {
+    transform: none;
   }
 }

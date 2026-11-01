@@ -8,6 +8,15 @@
 .section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 36% 46% at 45% 50%, #2e8bff0d, transparent 100%), radial-gradient(ellipse 28% 40% at 58% 62%, #df161608, transparent 100%); }
 .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.2fr); gap: 28px; align-items: center; }
 .copy { min-width: 0; }
+.contentColumns { display: contents; }
+@media (min-width: 701px) {
+  .contentColumns {
+    display: grid;
+    grid-column: 1 / span 2;
+    grid-template-columns: subgrid;
+    align-items: first baseline;
+  }
+}
 .benefitGroup { min-width: 0; }
 .benefitLabel { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; color: #a9bfd6; font-size: .6rem; font-weight: 500; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; }
 .benefitLabel::before { content: ""; width: 20px; height: 1px; flex-shrink: 0; background: var(--red); }
@@ -45,7 +54,7 @@
 .fields .fieldError { color: color-mix(in srgb, var(--red) 45%, var(--text)); font-size: .7rem; line-height: 1.6; }
 .fields input:focus { border-color: #648ab3; outline: 1px solid #2e8bff26; outline-offset: 2px; box-shadow: 0 0 0 3px #2e8bff0c; }
 .notice { margin: 22px 0; color: var(--muted); font-size: .65rem; line-height: 1.75; }
-.form > button { width: 100%; }
+.form > button { width: 100%; border-radius: 6px; }
 .form > button:hover { box-shadow: 0 4px 18px #df161614; }
 .form > button { transition: background 280ms ease, border-color 280ms ease, box-shadow 280ms ease; }
 .result { margin-top: 22px; border-left: 2px solid var(--blue); padding: 3px 0 3px 16px; color: var(--muted); font-size: .76rem; line-height: 1.7; }

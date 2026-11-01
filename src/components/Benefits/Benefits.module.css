@@ -49,6 +49,7 @@
 .panelTop { display: flex; align-items: center; justify-content: space-between; max-width: 540px; margin-bottom: 30px; }
 .panelIcon { width: 64px; height: 64px; flex-shrink: 0; color: var(--tone); filter: drop-shadow(0 0 12px color-mix(in srgb, var(--tone) 10%, transparent)); animation: iconIn 300ms ease both; }
 .panel h3 { max-width: 570px; min-height: 2.4em; margin: 0 0 22px; font-family: var(--display); font-size: clamp(2.3rem, 3.4vw, 3.5rem); line-height: 1.2; letter-spacing: .015em; text-transform: uppercase; text-wrap: balance; }
+.section[data-active="2"] .panel h3 { min-height: 0; }
 .panel p, .mobileContent p { margin: 0; max-width: 490px; color: #b4bfce; font-size: .92rem; line-height: 1.9; text-wrap: pretty; }
 .vitaminLine { margin-top: 18px; color: color-mix(in srgb, var(--tone) 65%, #d5deea); font-size: .75rem; font-weight: 500; line-height: 1.8; letter-spacing: .12em; }
 @media (hover: hover) and (pointer: fine) {

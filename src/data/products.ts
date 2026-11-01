@@ -1,17 +1,17 @@
-import image8 from "../assets/products/strawberry-mohito.png";
-import image9 from "../assets/products/bilberry-mohito.png";
-import image10 from "../assets/products/berry.png";
-import image11 from "../assets/products/lemon.png";
-import image12 from "../assets/products/mineral-water.png";
-import image13 from "../assets/products/carbonated-water.png";
-import image0 from "../assets/products/classic-mohito.png";
-import image1 from "../assets/products/orange.png";
-import image2 from "../assets/products/pineapple.png";
-import image3 from "../assets/products/pomegranate.png";
-import image4 from "../assets/products/raspberry.png";
-import image5 from "../assets/products/smorodina.png";
-import image6 from "../assets/products/cold-coffee.png";
-import image7 from "../assets/products/carbonated-coffee.png";
+import image8 from "../assets/optimized/products/strawberry-mohito.webp";
+import image9 from "../assets/optimized/products/bilberry-mohito.webp";
+import image10 from "../assets/optimized/products/berry.webp";
+import image11 from "../assets/optimized/products/lemon.webp";
+import image12 from "../assets/optimized/products/mineral-water.webp";
+import image13 from "../assets/optimized/products/carbonated-water.webp";
+import image0 from "../assets/optimized/products/classic-mohito.webp";
+import image1 from "../assets/optimized/products/orange.webp";
+import image2 from "../assets/optimized/products/pineapple.webp";
+import image3 from "../assets/optimized/products/pomegranate.webp";
+import image4 from "../assets/optimized/products/raspberry.webp";
+import image5 from "../assets/optimized/products/smorodina.webp";
+import image6 from "../assets/optimized/products/cold-coffee.webp";
+import image7 from "../assets/optimized/products/carbonated-coffee.webp";
 
 export type ProductCategory = "mohito" | "vitaminized" | "coffee" | "water";
 export interface Product {
@@ -26,10 +26,17 @@ export interface Product {
   category: ProductCategory;
   accent: string;
   image: string;
+  cardImage?: string;
   imagePath: string;
   imageScale?: number;
   imageBottom?: number;
 }
+
+const productThumbnails = import.meta.glob<string>("../assets/optimized/products/thumbnails/*.webp", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
 
 const catalogue: Omit<
   Product,
@@ -202,6 +209,7 @@ export const products: Product[] = [...catalogue]
   )
   .map((product) => ({
     ...product,
+    cardImage: productThumbnails["../assets/optimized/products/thumbnails/" + product.imagePath.split("/").at(-1)!.replace(".png", ".webp")],
     slug: product.id === "mohito-classic" ? "classic-mohito" : product.id,
     descriptionKey: "flavours." + product.id,
     volume: 240,

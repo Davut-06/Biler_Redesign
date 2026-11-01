@@ -16,6 +16,13 @@ export function ProductShowcase() {
   const [category, setCategory] = useState<ProductCategory | "all">(initialPosition.current?.category ?? "all");
   const carousel = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
+    const requested: unknown = location.state?.productCategory;
+    if (!returning && location.hash === "#products" && categories.some((item) => item === requested)) {
+      setCategory(requested as ProductCategory | "all");
+      carousel.current?.scrollTo({ left: 0, behavior: "instant" });
+    }
+  }, [location.key, location.hash, location.state]);
+  useLayoutEffect(() => {
     if (initialPosition.current?.category !== category) initialPosition.current = undefined;
     const position = initialPosition.current;
     carousel.current?.scrollTo({ left: position?.x ?? 0, behavior: "instant" });
@@ -85,9 +92,10 @@ export function ProductShowcase() {
                 <div className={styles.visual}>
                   <span className={styles.glow} aria-hidden="true" />
                   <img
-                    src={product.image}
+                    src={product.cardImage ?? product.image}
                     alt={name}
                     loading="lazy"
+                    decoding="async"
                     draggable={false}
                   />
                 </div>

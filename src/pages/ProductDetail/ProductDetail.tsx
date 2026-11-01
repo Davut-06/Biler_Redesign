@@ -126,11 +126,13 @@ export function ProductDetail() {
                   "vitaminized",
                   "nonAlcoholic",
                   "carbonated",
+                  "nonCarbonated",
                 ] as const
               )
                 .filter((feature) =>
                   (feature !== "vitaminized" || product.vitamins.length > 0) &&
-                  (feature !== "carbonated" || product.id !== "cold-coffee")
+                  (feature !== "carbonated" || product.id !== "cold-coffee") &&
+                  (feature !== "nonCarbonated" || product.id === "cold-coffee")
                 )
                 .map((feature) => (
                 <li className={styles.featureChip} key={feature}>
@@ -162,6 +164,7 @@ export function ProductDetail() {
                         <circle cx="16" cy="9" r="3" />
                         <circle cx="9" cy="3.5" r="1.5" />
                         <path d="M18 17v3m-1.5-1.5h3" />
+                        {feature === "nonCarbonated" && <path d="M3 3l18 18" />}
                       </>
                     )}
                   </svg>

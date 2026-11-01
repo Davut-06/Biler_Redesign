@@ -1,0 +1,712 @@
+{
+  "previousDeliveryBytes": 30291008,
+  "optimizedDeliveryBytes": 10968866,
+  "originalsUnchanged": true,
+  "images": [
+    {
+      "source": "src/assets/products/berry.png",
+      "delivery": "src/assets/optimized/products/berry.webp",
+      "quality": 94,
+      "dimensions": [
+        1038,
+        1515
+      ],
+      "bytes": 315296,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/berry.png",
+      "delivery": "src/assets/optimized/products/mobile/berry.webp",
+      "quality": 94,
+      "dimensions": [
+        658,
+        960
+      ],
+      "bytes": 160428,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/berry.png",
+      "delivery": "src/assets/optimized/products/thumbnails/berry.webp",
+      "quality": 85,
+      "dimensions": [
+        493,
+        720
+      ],
+      "bytes": 70896,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/berry.png",
+      "delivery": "src/assets/optimized/hero/bottles/berry.webp",
+      "quality": 94,
+      "dimensions": [
+        822,
+        1200
+      ],
+      "bytes": 225480,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/berry.png",
+      "delivery": "src/assets/optimized/hero/mobile/bottles/berry.webp",
+      "quality": 94,
+      "dimensions": [
+        493,
+        720
+      ],
+      "bytes": 100710,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/bilberry-mohito.png",
+      "delivery": "src/assets/optimized/products/bilberry-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        1086,
+        1448
+      ],
+      "bytes": 398222,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/bilberry-mohito.png",
+      "delivery": "src/assets/optimized/products/mobile/bilberry-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        720,
+        960
+      ],
+      "bytes": 210392,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/bilberry-mohito.png",
+      "delivery": "src/assets/optimized/products/thumbnails/bilberry-mohito.webp",
+      "quality": 85,
+      "dimensions": [
+        540,
+        720
+      ],
+      "bytes": 94662,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/carbonated-coffee.png",
+      "delivery": "src/assets/optimized/products/carbonated-coffee.webp",
+      "quality": 94,
+      "dimensions": [
+        1041,
+        1511
+      ],
+      "bytes": 304252,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/carbonated-coffee.png",
+      "delivery": "src/assets/optimized/products/mobile/carbonated-coffee.webp",
+      "quality": 94,
+      "dimensions": [
+        661,
+        960
+      ],
+      "bytes": 160134,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/carbonated-coffee.png",
+      "delivery": "src/assets/optimized/products/thumbnails/carbonated-coffee.webp",
+      "quality": 85,
+      "dimensions": [
+        496,
+        720
+      ],
+      "bytes": 65686,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/carbonated-water.png",
+      "delivery": "src/assets/optimized/products/carbonated-water.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 341028,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/carbonated-water.png",
+      "delivery": "src/assets/optimized/products/mobile/carbonated-water.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 171064,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/carbonated-water.png",
+      "delivery": "src/assets/optimized/products/thumbnails/carbonated-water.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 75960,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "delivery": "src/assets/optimized/products/classic-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        1086,
+        1448
+      ],
+      "bytes": 370510,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "delivery": "src/assets/optimized/products/mobile/classic-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        720,
+        960
+      ],
+      "bytes": 199946,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "delivery": "src/assets/optimized/products/thumbnails/classic-mohito.webp",
+      "quality": 85,
+      "dimensions": [
+        540,
+        720
+      ],
+      "bytes": 90670,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "delivery": "src/assets/optimized/hero/bottles/classic-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "bytes": 287236,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "delivery": "src/assets/optimized/hero/mobile/bottles/classic-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        540,
+        720
+      ],
+      "bytes": 123990,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/cold-coffee.png",
+      "delivery": "src/assets/optimized/products/cold-coffee.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 348626,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/cold-coffee.png",
+      "delivery": "src/assets/optimized/products/mobile/cold-coffee.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 166264,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/cold-coffee.png",
+      "delivery": "src/assets/optimized/products/thumbnails/cold-coffee.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 72246,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/lemon.png",
+      "delivery": "src/assets/optimized/products/lemon.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 356732,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/lemon.png",
+      "delivery": "src/assets/optimized/products/mobile/lemon.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 168982,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/lemon.png",
+      "delivery": "src/assets/optimized/products/thumbnails/lemon.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 76332,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/mineral-water.png",
+      "delivery": "src/assets/optimized/products/mineral-water.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 334370,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/mineral-water.png",
+      "delivery": "src/assets/optimized/products/mobile/mineral-water.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 165964,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/mineral-water.png",
+      "delivery": "src/assets/optimized/products/thumbnails/mineral-water.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 76366,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/orange.png",
+      "delivery": "src/assets/optimized/products/orange.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 334902,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/orange.png",
+      "delivery": "src/assets/optimized/products/mobile/orange.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 156754,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/orange.png",
+      "delivery": "src/assets/optimized/products/thumbnails/orange.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 66710,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/orange.png",
+      "delivery": "src/assets/optimized/hero/bottles/orange.webp",
+      "quality": 94,
+      "dimensions": [
+        800,
+        1200
+      ],
+      "bytes": 227948,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/pineapple.png",
+      "delivery": "src/assets/optimized/products/pineapple.webp",
+      "quality": 94,
+      "dimensions": [
+        1041,
+        1511
+      ],
+      "bytes": 282410,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/pineapple.png",
+      "delivery": "src/assets/optimized/products/mobile/pineapple.webp",
+      "quality": 94,
+      "dimensions": [
+        661,
+        960
+      ],
+      "bytes": 146970,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/pineapple.png",
+      "delivery": "src/assets/optimized/products/thumbnails/pineapple.webp",
+      "quality": 85,
+      "dimensions": [
+        496,
+        720
+      ],
+      "bytes": 65000,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/pomegranate.png",
+      "delivery": "src/assets/optimized/products/pomegranate.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 298642,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/pomegranate.png",
+      "delivery": "src/assets/optimized/products/mobile/pomegranate.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 145354,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/pomegranate.png",
+      "delivery": "src/assets/optimized/products/thumbnails/pomegranate.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 63172,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "delivery": "src/assets/optimized/products/raspberry.webp",
+      "quality": 94,
+      "dimensions": [
+        1041,
+        1511
+      ],
+      "bytes": 317872,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "delivery": "src/assets/optimized/products/mobile/raspberry.webp",
+      "quality": 94,
+      "dimensions": [
+        661,
+        960
+      ],
+      "bytes": 162172,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "delivery": "src/assets/optimized/products/thumbnails/raspberry.webp",
+      "quality": 85,
+      "dimensions": [
+        496,
+        720
+      ],
+      "bytes": 70218,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "delivery": "src/assets/optimized/hero/bottles/raspberry.webp",
+      "quality": 94,
+      "dimensions": [
+        827,
+        1200
+      ],
+      "bytes": 229472,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "delivery": "src/assets/optimized/hero/mobile/bottles/raspberry.webp",
+      "quality": 94,
+      "dimensions": [
+        496,
+        720
+      ],
+      "bytes": 98802,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/smorodina.png",
+      "delivery": "src/assets/optimized/products/smorodina.webp",
+      "quality": 94,
+      "dimensions": [
+        1041,
+        1511
+      ],
+      "bytes": 295626,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/smorodina.png",
+      "delivery": "src/assets/optimized/products/mobile/smorodina.webp",
+      "quality": 94,
+      "dimensions": [
+        661,
+        960
+      ],
+      "bytes": 152934,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/smorodina.png",
+      "delivery": "src/assets/optimized/products/thumbnails/smorodina.webp",
+      "quality": 85,
+      "dimensions": [
+        496,
+        720
+      ],
+      "bytes": 63020,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/smorodina.png",
+      "delivery": "src/assets/optimized/hero/bottles/smorodina.webp",
+      "quality": 94,
+      "dimensions": [
+        827,
+        1200
+      ],
+      "bytes": 219626,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/strawberry-mohito.png",
+      "delivery": "src/assets/optimized/products/strawberry-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 424742,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/strawberry-mohito.png",
+      "delivery": "src/assets/optimized/products/mobile/strawberry-mohito.webp",
+      "quality": 94,
+      "dimensions": [
+        640,
+        960
+      ],
+      "bytes": 202048,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/products/strawberry-mohito.png",
+      "delivery": "src/assets/optimized/products/thumbnails/strawberry-mohito.webp",
+      "quality": 85,
+      "dimensions": [
+        480,
+        720
+      ],
+      "bytes": 93516,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/splash-left.png",
+      "delivery": "src/assets/optimized/hero/splash-left.webp",
+      "quality": 88,
+      "dimensions": [
+        768,
+        960
+      ],
+      "bytes": 287354,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/splash-left.png",
+      "delivery": "src/assets/optimized/hero/mobile/splash-left.webp",
+      "quality": 88,
+      "dimensions": [
+        512,
+        640
+      ],
+      "bytes": 138694,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/splash-right.png",
+      "delivery": "src/assets/optimized/hero/splash-right.webp",
+      "quality": 86,
+      "dimensions": [
+        768,
+        960
+      ],
+      "bytes": 236796,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/droplets.png",
+      "delivery": "src/assets/optimized/hero/droplets.webp",
+      "quality": 86,
+      "dimensions": [
+        960,
+        720
+      ],
+      "bytes": 126858,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/ice-left.png",
+      "delivery": "src/assets/optimized/hero/ice-left.webp",
+      "quality": 88,
+      "dimensions": [
+        640,
+        640
+      ],
+      "bytes": 94888,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/ice-left.png",
+      "delivery": "src/assets/optimized/hero/mobile/ice-left.webp",
+      "quality": 88,
+      "dimensions": [
+        256,
+        256
+      ],
+      "bytes": 19406,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/ice-right.png",
+      "delivery": "src/assets/optimized/hero/ice-right.webp",
+      "quality": 88,
+      "dimensions": [
+        640,
+        640
+      ],
+      "bytes": 81674,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/hero/ice-right.png",
+      "delivery": "src/assets/optimized/hero/mobile/ice-right.webp",
+      "quality": 88,
+      "dimensions": [
+        256,
+        256
+      ],
+      "bytes": 16642,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/backgrounds/hero-mountains.png",
+      "delivery": "src/assets/optimized/backgrounds/hero-mountains.webp",
+      "quality": 86,
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 206874,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/backgrounds/hero-mountains.png",
+      "delivery": "src/assets/optimized/backgrounds/mobile/hero-mountains.webp",
+      "quality": 86,
+      "dimensions": [
+        1000,
+        563
+      ],
+      "bytes": 92100,
+      "alphaExact": true
+    },
+    {
+      "source": "src/assets/brand/biler-header-logo.png",
+      "delivery": "src/assets/optimized/brand/biler-logo.webp",
+      "quality": 94,
+      "dimensions": [
+        192,
+        192
+      ],
+      "bytes": 15434,
+      "alphaExact": true
+    },
+    {
+      "source": "src\\assets\\optimized\\brand\\biler-favicon.png",
+      "delivery": "src\\assets\\optimized\\brand\\biler-favicon.webp",
+      "quality": "lossless",
+      "dimensions": [
+        48,
+        48
+      ],
+      "bytes": 1792,
+      "alphaExact": true
+    }
+  ],
+  "reductionPercent": 63.79,
+  "coldHomepageMeasurements": {
+    "method": "Chromium production preview, cache disabled, fresh top-of-page navigation, 900px viewport height, DPR 1; encoded image response body bytes including favicon; native lazy loading retained",
+    "desktop1440": {
+      "beforeBytes": 13645440,
+      "afterBytes": 2638656,
+      "reductionPercent": 80.66,
+      "cls": 0
+    },
+    "mobile390": {
+      "beforeBytes": 8843796,
+      "afterBytes": 870878,
+      "reductionPercent": 90.15,
+      "cls": 0
+    }
+  },
+  "validation": {
+    "typecheck": "pass",
+    "build": "pass (Vite warns main JS chunk exceeds 500 kB)",
+    "existingTests": "84/84 pass",
+    "browser": "14 products, RU/EN, 1440/390; images decode; no overflow; no failed requests; mobile hidden Hero sources suppressed; no duplicate detail image download",
+    "visualReview": "Side-by-side lossless baseline and optimized screenshots reviewed for Hero, catalogue and product details at normal desktop/mobile sizes. No objectionable compression artifacts observed."
+  }
+}

@@ -1,0 +1,805 @@
+{
+  "encoder": "Pillow 12.2.0 / libwebp; lossless=True, method=6, exact=True",
+  "sourceImageCount": 21,
+  "sourceImageBytes": 34857657,
+  "renditionCount": 36,
+  "referenceBytes": 41870758,
+  "webpBytes": 30291008,
+  "deliveryBytes": 30291008,
+  "originalsUnchanged": true,
+  "images": [
+    {
+      "source": "src/assets/products/berry.png",
+      "webp": "src/assets/optimized/products/berry.webp",
+      "delivery": "src/assets/optimized/products/berry.webp",
+      "sourceDimensions": [
+        1038,
+        1515
+      ],
+      "deliveryDimensions": [
+        1038,
+        1515
+      ],
+      "referenceBytes": 1517884,
+      "webpBytes": 1106618,
+      "deliveryBytes": 1106618,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/berry.png",
+      "webp": "src/assets/optimized/products/thumbnails/berry.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/berry.webp",
+      "sourceDimensions": [
+        1038,
+        1515
+      ],
+      "deliveryDimensions": [
+        658,
+        960
+      ],
+      "referenceBytes": 667259,
+      "webpBytes": 503422,
+      "deliveryBytes": 503422,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/bilberry-mohito.png",
+      "webp": "src/assets/optimized/products/bilberry-mohito.webp",
+      "delivery": "src/assets/optimized/products/bilberry-mohito.webp",
+      "sourceDimensions": [
+        1086,
+        1448
+      ],
+      "deliveryDimensions": [
+        1086,
+        1448
+      ],
+      "referenceBytes": 1679435,
+      "webpBytes": 1276124,
+      "deliveryBytes": 1276124,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/bilberry-mohito.png",
+      "webp": "src/assets/optimized/products/thumbnails/bilberry-mohito.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/bilberry-mohito.webp",
+      "sourceDimensions": [
+        1086,
+        1448
+      ],
+      "deliveryDimensions": [
+        720,
+        960
+      ],
+      "referenceBytes": 803209,
+      "webpBytes": 629056,
+      "deliveryBytes": 629056,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/carbonated-coffee.png",
+      "webp": "src/assets/optimized/products/carbonated-coffee.webp",
+      "delivery": "src/assets/optimized/products/carbonated-coffee.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        1041,
+        1511
+      ],
+      "referenceBytes": 1498507,
+      "webpBytes": 1072990,
+      "deliveryBytes": 1072990,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/carbonated-coffee.png",
+      "webp": "src/assets/optimized/products/thumbnails/carbonated-coffee.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/carbonated-coffee.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        661,
+        960
+      ],
+      "referenceBytes": 650076,
+      "webpBytes": 474484,
+      "deliveryBytes": 474484,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/carbonated-water.png",
+      "webp": "src/assets/optimized/products/carbonated-water.webp",
+      "delivery": "src/assets/optimized/products/carbonated-water.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 2044016,
+      "webpBytes": 1460642,
+      "deliveryBytes": 1460642,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/carbonated-water.png",
+      "webp": "src/assets/optimized/products/thumbnails/carbonated-water.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/carbonated-water.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 664787,
+      "webpBytes": 514220,
+      "deliveryBytes": 514220,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "webp": "src/assets/optimized/products/classic-mohito.webp",
+      "delivery": "src/assets/optimized/products/classic-mohito.webp",
+      "sourceDimensions": [
+        1086,
+        1448
+      ],
+      "deliveryDimensions": [
+        1086,
+        1448
+      ],
+      "referenceBytes": 1596325,
+      "webpBytes": 1204426,
+      "deliveryBytes": 1204426,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/classic-mohito.png",
+      "webp": "src/assets/optimized/products/thumbnails/classic-mohito.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/classic-mohito.webp",
+      "sourceDimensions": [
+        1086,
+        1448
+      ],
+      "deliveryDimensions": [
+        720,
+        960
+      ],
+      "referenceBytes": 765738,
+      "webpBytes": 595238,
+      "deliveryBytes": 595238,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/cold-coffee.png",
+      "webp": "src/assets/optimized/products/cold-coffee.webp",
+      "delivery": "src/assets/optimized/products/cold-coffee.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 2136399,
+      "webpBytes": 1490654,
+      "deliveryBytes": 1490654,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/cold-coffee.png",
+      "webp": "src/assets/optimized/products/thumbnails/cold-coffee.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/cold-coffee.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 673525,
+      "webpBytes": 510710,
+      "deliveryBytes": 510710,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/lemon.png",
+      "webp": "src/assets/optimized/products/lemon.webp",
+      "delivery": "src/assets/optimized/products/lemon.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 2117924,
+      "webpBytes": 1535510,
+      "deliveryBytes": 1535510,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/lemon.png",
+      "webp": "src/assets/optimized/products/thumbnails/lemon.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/lemon.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 701454,
+      "webpBytes": 545992,
+      "deliveryBytes": 545992,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/mineral-water.png",
+      "webp": "src/assets/optimized/products/mineral-water.webp",
+      "delivery": "src/assets/optimized/products/mineral-water.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 1972145,
+      "webpBytes": 1411820,
+      "deliveryBytes": 1411820,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/mineral-water.png",
+      "webp": "src/assets/optimized/products/thumbnails/mineral-water.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/mineral-water.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 647417,
+      "webpBytes": 504868,
+      "deliveryBytes": 504868,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/orange.png",
+      "webp": "src/assets/optimized/products/orange.webp",
+      "delivery": "src/assets/optimized/products/orange.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 2056303,
+      "webpBytes": 1418630,
+      "deliveryBytes": 1418630,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/orange.png",
+      "webp": "src/assets/optimized/products/thumbnails/orange.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/orange.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 628801,
+      "webpBytes": 483264,
+      "deliveryBytes": 483264,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/pineapple.png",
+      "webp": "src/assets/optimized/products/pineapple.webp",
+      "delivery": "src/assets/optimized/products/pineapple.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        1041,
+        1511
+      ],
+      "referenceBytes": 1411353,
+      "webpBytes": 1043306,
+      "deliveryBytes": 1043306,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/pineapple.png",
+      "webp": "src/assets/optimized/products/thumbnails/pineapple.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/pineapple.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        661,
+        960
+      ],
+      "referenceBytes": 613748,
+      "webpBytes": 470096,
+      "deliveryBytes": 470096,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/pomegranate.png",
+      "webp": "src/assets/optimized/products/pomegranate.webp",
+      "delivery": "src/assets/optimized/products/pomegranate.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 2010985,
+      "webpBytes": 1392694,
+      "deliveryBytes": 1392694,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/pomegranate.png",
+      "webp": "src/assets/optimized/products/thumbnails/pomegranate.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/pomegranate.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 597010,
+      "webpBytes": 451784,
+      "deliveryBytes": 451784,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "webp": "src/assets/optimized/products/raspberry.webp",
+      "delivery": "src/assets/optimized/products/raspberry.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        1041,
+        1511
+      ],
+      "referenceBytes": 1557212,
+      "webpBytes": 1160446,
+      "deliveryBytes": 1160446,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/raspberry.png",
+      "webp": "src/assets/optimized/products/thumbnails/raspberry.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/raspberry.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        661,
+        960
+      ],
+      "referenceBytes": 678562,
+      "webpBytes": 521142,
+      "deliveryBytes": 521142,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/smorodina.png",
+      "webp": "src/assets/optimized/products/smorodina.webp",
+      "delivery": "src/assets/optimized/products/smorodina.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        1041,
+        1511
+      ],
+      "referenceBytes": 1500388,
+      "webpBytes": 1054912,
+      "deliveryBytes": 1054912,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/smorodina.png",
+      "webp": "src/assets/optimized/products/thumbnails/smorodina.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/smorodina.webp",
+      "sourceDimensions": [
+        1041,
+        1511
+      ],
+      "deliveryDimensions": [
+        661,
+        960
+      ],
+      "referenceBytes": 641803,
+      "webpBytes": 463704,
+      "deliveryBytes": 463704,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/products/strawberry-mohito.png",
+      "webp": "src/assets/optimized/products/strawberry-mohito.webp",
+      "delivery": "src/assets/optimized/products/strawberry-mohito.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        1024,
+        1536
+      ],
+      "referenceBytes": 2248490,
+      "webpBytes": 1599020,
+      "deliveryBytes": 1599020,
+      "alphaExtrema": [
+        0,
+        254
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/products/strawberry-mohito.png",
+      "webp": "src/assets/optimized/products/thumbnails/strawberry-mohito.webp",
+      "delivery": "src/assets/optimized/products/thumbnails/strawberry-mohito.webp",
+      "sourceDimensions": [
+        1024,
+        1536
+      ],
+      "deliveryDimensions": [
+        640,
+        960
+      ],
+      "referenceBytes": 755871,
+      "webpBytes": 586448,
+      "deliveryBytes": 586448,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/hero/splash-left.png",
+      "webp": "src/assets/optimized/hero/splash-left.webp",
+      "delivery": "src/assets/optimized/hero/splash-left.webp",
+      "sourceDimensions": [
+        1122,
+        1402
+      ],
+      "deliveryDimensions": [
+        1122,
+        1402
+      ],
+      "referenceBytes": 1902615,
+      "webpBytes": 1293454,
+      "deliveryBytes": 1293454,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/hero/splash-right.png",
+      "webp": "src/assets/optimized/hero/splash-right.webp",
+      "delivery": "src/assets/optimized/hero/splash-right.webp",
+      "sourceDimensions": [
+        1122,
+        1402
+      ],
+      "deliveryDimensions": [
+        1122,
+        1402
+      ],
+      "referenceBytes": 1514928,
+      "webpBytes": 987736,
+      "deliveryBytes": 987736,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/hero/droplets.png",
+      "webp": "src/assets/optimized/hero/droplets.webp",
+      "delivery": "src/assets/optimized/hero/droplets.webp",
+      "sourceDimensions": [
+        1448,
+        1086
+      ],
+      "deliveryDimensions": [
+        1448,
+        1086
+      ],
+      "referenceBytes": 632658,
+      "webpBytes": 373240,
+      "deliveryBytes": 373240,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/hero/ice-left.png",
+      "webp": "src/assets/optimized/hero/ice-left.webp",
+      "delivery": "src/assets/optimized/hero/ice-left.webp",
+      "sourceDimensions": [
+        1254,
+        1254
+      ],
+      "deliveryDimensions": [
+        640,
+        640
+      ],
+      "referenceBytes": 400521,
+      "webpBytes": 274804,
+      "deliveryBytes": 274804,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/hero/ice-right.png",
+      "webp": "src/assets/optimized/hero/ice-right.webp",
+      "delivery": "src/assets/optimized/hero/ice-right.webp",
+      "sourceDimensions": [
+        1254,
+        1254
+      ],
+      "deliveryDimensions": [
+        640,
+        640
+      ],
+      "referenceBytes": 326979,
+      "webpBytes": 231310,
+      "deliveryBytes": 231310,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/backgrounds/hero-mountains.png",
+      "webp": "src/assets/optimized/backgrounds/hero-mountains.webp",
+      "delivery": "src/assets/optimized/backgrounds/hero-mountains.webp",
+      "sourceDimensions": [
+        1672,
+        941
+      ],
+      "deliveryDimensions": [
+        1672,
+        941
+      ],
+      "referenceBytes": 2222943,
+      "webpBytes": 1623728,
+      "deliveryBytes": 1623728,
+      "alphaExtrema": [
+        255,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    },
+    {
+      "source": "src/assets/brand/biler-header-logo.png",
+      "webp": "src/assets/optimized/brand/biler-logo.webp",
+      "delivery": "src/assets/optimized/brand/biler-logo.webp",
+      "sourceDimensions": [
+        1500,
+        1500
+      ],
+      "deliveryDimensions": [
+        256,
+        256
+      ],
+      "referenceBytes": 30241,
+      "webpBytes": 22724,
+      "deliveryBytes": 22724,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": true
+    },
+    {
+      "source": "src/assets/optimized/brand/biler-favicon.png",
+      "webp": "src/assets/optimized/brand/biler-favicon.webp",
+      "delivery": "src/assets/optimized/brand/biler-favicon.webp",
+      "sourceDimensions": [
+        48,
+        48
+      ],
+      "deliveryDimensions": [
+        48,
+        48
+      ],
+      "referenceBytes": 3247,
+      "webpBytes": 1792,
+      "deliveryBytes": 1792,
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "rgbaExact": true,
+      "resized": false
+    }
+  ],
+  "reductionPercent": 27.66
+}

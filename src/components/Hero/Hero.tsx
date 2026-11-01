@@ -8,28 +8,41 @@ import splashRight from "../../assets/optimized/hero/splash-right.webp";
 import droplets from "../../assets/optimized/hero/droplets.webp";
 import iceLeft from "../../assets/optimized/hero/ice-left.webp";
 import iceRight from "../../assets/optimized/hero/ice-right.webp";
+import mobileMountains from "../../assets/optimized/backgrounds/mobile/hero-mountains.webp";
+import mobileSplashLeft from "../../assets/optimized/hero/mobile/splash-left.webp";
+import mobileIceLeft from "../../assets/optimized/hero/mobile/ice-left.webp";
+import mobileIceRight from "../../assets/optimized/hero/mobile/ice-right.webp";
 import styles from "./Hero.module.css";
 
+const bottleImages = import.meta.glob<string>("../../assets/optimized/hero/{bottles,mobile/bottles}/*.webp", {
+  eager: true, query: "?url", import: "default",
+});
 const heroBottles = [
   { id: "orange", position: "outerLeft" },
   { id: "smorodina", position: "outerRight" },
   { id: "mohito-classic", position: "left" },
   { id: "raspberry", position: "right" },
   { id: "berry", position: "center" },
-].map((slot) => ({
-  ...products.find((product) => product.id === slot.id)!,
-  position: slot.position,
-}));
+].map((slot) => {
+  const product = products.find((product) => product.id === slot.id)!;
+  const filename = product.imagePath.split("/").at(-1)!.replace(".png", ".webp");
+  return {
+    ...product,
+    image: bottleImages["../../assets/optimized/hero/bottles/" + filename],
+    mobileImage: bottleImages["../../assets/optimized/hero/mobile/bottles/" + filename],
+    position: slot.position,
+  };
+});
 
 const benefitKeys = ["taste", "quality", "refreshment"] as const;
 
 // Match the existing 600px visibility breakpoint without fetching hidden artwork.
 const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-function HeroImage({ desktopOnly = false, ...props }: ImgHTMLAttributes<HTMLImageElement> & { desktopOnly?: boolean }) {
-  if (!desktopOnly) return <img {...props} />;
+function HeroImage({ desktopOnly = false, mobileSrc, ...props }: ImgHTMLAttributes<HTMLImageElement> & { desktopOnly?: boolean; mobileSrc?: string }) {
+  if (!desktopOnly && !mobileSrc) return <img {...props} />;
   return (
     <picture className={styles.responsiveImage}>
-      <source media="(max-width: 600px)" srcSet={transparentPixel} />
+      <source media="(max-width: 600px)" srcSet={desktopOnly ? transparentPixel : mobileSrc} />
       <img {...props} />
     </picture>
   );
@@ -62,9 +75,10 @@ export function Hero() {
   const sceneVisible = useInView(sceneRef);
   return (
     <section id="home" className={styles.hero} aria-labelledby="hero-title">
-      <img
+      <HeroImage
         className={styles.mountains}
         src={mountainBackground}
+        mobileSrc={mobileMountains}
         alt=""
         aria-hidden="true"
         fetchPriority="high"
@@ -153,9 +167,10 @@ export function Hero() {
           <div className={styles.spotlight} aria-hidden="true" />
           <div className={styles.ground} aria-hidden="true" />
           <div className={styles.waterBehind} aria-hidden="true">
-            <img
+            <HeroImage
               className={styles.splashLeft}
               src={splashLeft}
+              mobileSrc={mobileSplashLeft}
               alt=""
               decoding="async"
             />
@@ -176,15 +191,17 @@ export function Hero() {
             decoding="async"
           />
           <div className={styles.foregroundIce} aria-hidden="true">
-            <img
+            <HeroImage
               className={styles.iceLeft}
               src={iceLeft}
+              mobileSrc={mobileIceLeft}
               alt=""
               decoding="async"
             />
-            <img
+            <HeroImage
               className={styles.iceRight}
               src={iceRight}
+              mobileSrc={mobileIceRight}
               alt=""
               decoding="async"
             />
@@ -211,7 +228,7 @@ export function Hero() {
               className={styles.bottle + " " + styles[bottle.position]}
             >
               <div className={styles.reflection} aria-hidden="true">
-                <HeroImage desktopOnly={bottle.position === "outerLeft" || bottle.position === "outerRight"} src={bottle.image} alt="" decoding="async" />
+                <HeroImage desktopOnly={bottle.position === "outerLeft" || bottle.position === "outerRight"} src={bottle.image} mobileSrc={bottle.mobileImage} alt="" decoding="async" />
               </div>
               <span className={styles.bottleShadow} aria-hidden="true" />
               <motion.div
@@ -230,6 +247,7 @@ export function Hero() {
                   <HeroImage
                     desktopOnly={bottle.position === "outerLeft" || bottle.position === "outerRight"}
                     src={bottle.image}
+                    mobileSrc={bottle.mobileImage}
                     alt={t("productNames." + bottle.id, {
                       defaultValue: bottle.name,
                     })}

@@ -26,6 +26,7 @@ export interface Product {
   category: ProductCategory;
   accent: string;
   image: string;
+  mobileImage?: string;
   cardImage?: string;
   imagePath: string;
   imageScale?: number;
@@ -33,6 +34,11 @@ export interface Product {
 }
 
 const productThumbnails = import.meta.glob<string>("../assets/optimized/products/thumbnails/*.webp", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+const mobileProducts = import.meta.glob<string>("../assets/optimized/products/mobile/*.webp", {
   eager: true,
   query: "?url",
   import: "default",
@@ -209,6 +215,7 @@ export const products: Product[] = [...catalogue]
   )
   .map((product) => ({
     ...product,
+    mobileImage: mobileProducts["../assets/optimized/products/mobile/" + product.imagePath.split("/").at(-1)!.replace(".png", ".webp")],
     cardImage: productThumbnails["../assets/optimized/products/thumbnails/" + product.imagePath.split("/").at(-1)!.replace(".png", ".webp")],
     slug: product.id === "mohito-classic" ? "classic-mohito" : product.id,
     descriptionKey: "flavours." + product.id,

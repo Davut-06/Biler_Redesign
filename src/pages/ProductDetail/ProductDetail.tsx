@@ -14,7 +14,7 @@ export function ProductDetail() {
     let cancelled = false;
     if (!product) return;
     const source = product.image;
-    const sources = [source];
+    const sources = [window.matchMedia("(max-width: 800px)").matches ? product.mobileImage ?? source : source];
     // Reveal the bottle and its CSS lighting together after decoding.
     void Promise.all(sources.map((src) => {
       const image = new Image();
@@ -72,8 +72,11 @@ export function ProductDetail() {
           <div className={styles.visual} data-ready={readyScene === product.image}>
             <span className={styles.glow} aria-hidden="true" />
             <div className={styles.scene} data-ready={readyScene === product.image}>
-              <img className={styles.bottle} src={product.image} alt={name}
-                loading="eager" fetchPriority="high" />
+              <picture>
+                <source media="(max-width: 800px)" srcSet={product.mobileImage} />
+                <img className={styles.bottle} src={product.image} alt={name}
+                  loading="eager" fetchPriority="high" />
+              </picture>
             </div>
             <span className={styles.floor} aria-hidden="true" />
           </div>

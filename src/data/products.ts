@@ -61,7 +61,7 @@ const catalogue: Omit<
     category: "mohito",
     accent: "#b7ec78",
     image: image0,
-    imagePath: "src/assets/products/classic-mohito.png",
+    imagePath: "src/assets/optimized/products/classic-mohito.webp",
   },
   {
     id: "orange",
@@ -71,7 +71,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#ffb347",
     image: image1,
-    imagePath: "src/assets/products/orange.png",
+    imagePath: "src/assets/optimized/products/orange.webp",
   },
   {
     id: "pineapple",
@@ -81,7 +81,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#ffd65a",
     image: image2,
-    imagePath: "src/assets/products/pineapple.png",
+    imagePath: "src/assets/optimized/products/pineapple.webp",
   },
   {
     id: "pomegranate",
@@ -91,7 +91,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#ee4457",
     image: image3,
-    imagePath: "src/assets/products/pomegranate.png",
+    imagePath: "src/assets/optimized/products/pomegranate.webp",
   },
   {
     id: "raspberry",
@@ -101,7 +101,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#ef629b",
     image: image4,
-    imagePath: "src/assets/products/raspberry.png",
+    imagePath: "src/assets/optimized/products/raspberry.webp",
   },
   {
     id: "smorodina",
@@ -111,7 +111,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#b38ae0",
     image: image5,
-    imagePath: "src/assets/products/smorodina.png",
+    imagePath: "src/assets/optimized/products/smorodina.webp",
   },
   {
     id: "cold-coffee",
@@ -121,7 +121,7 @@ const catalogue: Omit<
     category: "coffee",
     accent: "#c9a16b",
     image: image6,
-    imagePath: "src/assets/products/cold-coffee.png",
+    imagePath: "src/assets/optimized/products/cold-coffee.webp",
   },
   {
     id: "carbonated-coffee",
@@ -131,7 +131,7 @@ const catalogue: Omit<
     category: "coffee",
     accent: "#bb793e",
     image: image7,
-    imagePath: "src/assets/products/carbonated-coffee.png",
+    imagePath: "src/assets/optimized/products/carbonated-coffee.webp",
   },
   {
     id: "strawberry-mohito",
@@ -141,7 +141,7 @@ const catalogue: Omit<
     category: "mohito",
     accent: "#ff4584",
     image: image8,
-    imagePath: "src/assets/products/strawberry-mohito.png",
+    imagePath: "src/assets/optimized/products/strawberry-mohito.webp",
   },
   {
     id: "bilberry-mohito",
@@ -151,7 +151,7 @@ const catalogue: Omit<
     category: "mohito",
     accent: "#795dff",
     image: image9,
-    imagePath: "src/assets/products/bilberry-mohito.png",
+    imagePath: "src/assets/optimized/products/bilberry-mohito.webp",
   },
   {
     id: "berry",
@@ -161,7 +161,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#b978ee",
     image: image10,
-    imagePath: "src/assets/products/berry.png",
+    imagePath: "src/assets/optimized/products/berry.webp",
   },
   {
     id: "lemon",
@@ -171,7 +171,7 @@ const catalogue: Omit<
     category: "vitaminized",
     accent: "#e5ec55",
     image: image11,
-    imagePath: "src/assets/products/lemon.png",
+    imagePath: "src/assets/optimized/products/lemon.webp",
   },
   {
     id: "mineral-water",
@@ -181,7 +181,7 @@ const catalogue: Omit<
     category: "water",
     accent: "#7dd3ff",
     image: image12,
-    imagePath: "src/assets/products/mineral-water.png",
+    imagePath: "src/assets/optimized/products/mineral-water.webp",
   },
   {
     id: "carbonated-water",
@@ -191,7 +191,7 @@ const catalogue: Omit<
     category: "water",
     accent: "#a5e7ed",
     image: image13,
-    imagePath: "src/assets/products/carbonated-water.png",
+    imagePath: "src/assets/optimized/products/carbonated-water.webp",
   },
 ];
 
@@ -215,8 +215,8 @@ export const products: Product[] = [...catalogue]
   )
   .map((product) => ({
     ...product,
-    mobileImage: mobileProducts["../assets/optimized/products/mobile/" + product.imagePath.split("/").at(-1)!.replace(".png", ".webp")],
-    cardImage: productThumbnails["../assets/optimized/products/thumbnails/" + product.imagePath.split("/").at(-1)!.replace(".png", ".webp")],
+    mobileImage: mobileProducts["../assets/optimized/products/mobile/" + product.imagePath.split("/").at(-1)!],
+    cardImage: productThumbnails["../assets/optimized/products/thumbnails/" + product.imagePath.split("/").at(-1)!],
     slug: product.id === "mohito-classic" ? "classic-mohito" : product.id,
     descriptionKey: "flavours." + product.id,
     volume: 240,

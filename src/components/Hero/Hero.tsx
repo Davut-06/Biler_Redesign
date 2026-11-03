@@ -25,7 +25,7 @@ const heroBottles = [
   { id: "berry", position: "center" },
 ].map((slot) => {
   const product = products.find((product) => product.id === slot.id)!;
-  const filename = product.imagePath.split("/").at(-1)!.replace(".png", ".webp");
+  const filename = product.imagePath.split("/").at(-1)!;
   return {
     ...product,
     image: bottleImages["../../assets/optimized/hero/bottles/" + filename],

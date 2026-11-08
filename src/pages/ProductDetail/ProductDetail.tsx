@@ -26,13 +26,6 @@ export function ProductDetail() {
   const name = product
     ? t("productNames." + product.id, { defaultValue: product.name })
     : t("productDetail.notFound");
-  useEffect(() => {
-    const previous = document.title;
-    document.title = name + " | Biler";
-    return () => {
-      document.title = previous;
-    };
-  }, [name]);
   const back = (
     <Link className={styles.back} to="/#products" state={{ restoreCatalogue: true, catalogueKey: location.state?.catalogueKey }}>
       <svg className={styles.backArrow} viewBox="0 0 32 20" fill="none" aria-hidden="true" focusable="false">

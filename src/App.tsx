@@ -11,6 +11,7 @@ import { DistributorSection } from "./components/DistributorSection/DistributorS
 import { Footer } from "./components/Footer/Footer";
 
 import { readCataloguePosition } from "./utils/cataloguePosition";
+import { SeoMetadata } from "./components/shared/SeoMetadata";
 
 export default function App() {
   const { t } = useTranslation();
@@ -38,6 +39,7 @@ export default function App() {
   }, [pathname, hash, location.key, location.state, navigationType]);
   return (
     <MotionConfig reducedMotion="user">
+      <SeoMetadata />
       <a className="skip-link" href="#main">
         {t("skip")}
       </a>

@@ -95,16 +95,11 @@ The application uses BrowserRouter. The web server must serve existing static fi
 
 The receiving developer should apply the appropriate SPA rewrite/fallback for the actual hosting environment. Preserve unrelated API, admin, and existing-site routes; do not replace existing server configuration wholesale.
 
-### Apache example
+### reg.ru / ISPmanager and Apache
 
-For a document-root deployment using `mod_rewrite`, adapt these rules in the site's configuration or an allowed `.htaccess` file:
+`public/.htaccess` is copied to `dist/.htaccess` by Vite. It provides a module-guarded SPA fallback, preserves existing files/directories, caches Vite fingerprinted assets for one year, and requires HTML revalidation. The production build checks the copied configuration and public assets. Include the hidden file when uploading the contents of `dist/` and merge with any existing host configuration instead of replacing unrelated rules.
 
-```apache
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
-```
+See [reg.ru hosting instructions](docs/reg-ru-hosting.md) for ISPmanager requirements, Apache override permissions, Nginx limitations, cache checks and direct-load/refresh verification. An SPA fallback can return HTTP 200 for unknown routes; it does not implement a true HTTP 404.
 
 ### Nginx example
 
@@ -118,7 +113,7 @@ location / {
 }
 ```
 
-These are examples, not installed deployment configuration. Verify direct product URLs after deploying; successful in-app navigation alone does not validate server fallback behavior.
+The Nginx snippet is only an example and has not been installed. Apache configuration is included in the build but has not been deployed or verified on the host. Verify direct product URLs after separately authorized deployment; successful in-app navigation alone does not validate server fallback behavior.
 
 ### Base path
 

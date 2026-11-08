@@ -6,7 +6,7 @@ import ts from "typescript";
 // Exercise the production TypeScript without adding a test runner dependency.
 const source = fs.readFileSync(new URL("../src/utils/distributorEnquiry.ts", import.meta.url), "utf8");
 const { outputText } = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } });
-const { validateEnquiry, normalizeEnquiry, createEnquiryMailto, postDistributorEnquiry, enquiryFields } = await import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
+const { validateEnquiry, normalizeEnquiry, enquiryFields } = await import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
 const valid = { company: "Biler & Partners, Ltd. (2026)", taxId: "DE123456789", name: "Alexander", phone: "+49 (176) 123-4567", email: "name@company.com" };
 const cases = {
   company: {
@@ -56,44 +56,6 @@ test("all invalid fields are reported together, with translated messages", () =>
       assert.ok(partner.fields[field]);
       for (const value of cases[field].fail) assert.ok(partner.errors[validateEnquiry({ ...valid, [field]: value })[field]]);
     }
-    assert.ok(partner.emailFallback && partner.success && partner.failure);
+    assert.ok(partner.sending && partner.success && partner.failure);
   }
-});
-
-test("mailto includes normalized fields in order and refuses invalid data", () => {
-  const labels = Object.fromEntries(enquiryFields.map((field) => [field, field]));
-  const url = new URL(createEnquiryMailto({ ...valid, taxId: " DE123456789 " }, labels, "Enquiry"));
-  assert.equal(url.protocol, "mailto:");
-  assert.equal(url.pathname, "biler.distribute@gmail.com");
-  assert.equal(url.searchParams.get("body"), enquiryFields.map((field) => `${field}: ${valid[field]}`).join("\n"));
-  assert.throws(() => createEnquiryMailto({ ...valid, phone: "sdv" }, labels, "Enquiry"));
-});
-
-test("future POST validates before networking and requires explicit server confirmation", async (context) => {
-  const requests = [];
-  let response = new Response(JSON.stringify({ success: true }), { status: 200 });
-  context.mock.method(globalThis, "fetch", async (url, options) => {
-    requests.push({ url, options });
-    return response;
-  });
-  await assert.rejects(postDistributorEnquiry({ ...valid, phone: "sdv" }));
-  assert.equal(requests.length, 0);
-  await postDistributorEnquiry({ ...valid, company: "  " + valid.company + "  " });
-  assert.equal(requests[0].url, "/api/distributor-enquiry");
-  assert.equal(requests[0].options.method, "POST");
-  assert.equal(requests[0].options.headers["Content-Type"], "application/json");
-  assert.deepEqual(JSON.parse(requests[0].options.body), valid);
-  for (const candidate of [
-    new Response("Server failure", { status: 500 }),
-    new Response("Invalid request", { status: 400 }),
-    new Response("<html>SPA fallback</html>", { status: 200 }),
-    new Response(JSON.stringify({ success: false }), { status: 200 }),
-    new Response(JSON.stringify({}), { status: 200 }),
-    new Response(null, { status: 204 }),
-  ]) {
-    response = candidate;
-    await assert.rejects(postDistributorEnquiry(valid));
-  }
-  context.mock.method(globalThis, "fetch", async () => { throw new TypeError("Network failure"); });
-  await assert.rejects(postDistributorEnquiry(valid));
 });

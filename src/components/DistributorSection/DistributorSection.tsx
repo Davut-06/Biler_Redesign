@@ -1,11 +1,10 @@
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../shared/Icon";
 import { Reveal } from "../shared/Reveal";
 import styles from "./DistributorSection.module.css";
 import {
-  createEnquiryMailto,
   enquiryFields,
   normalizeEnquiry,
   validateEnquiry,
@@ -13,6 +12,7 @@ import {
   type EnquiryErrors,
   type EnquiryField,
 } from "../../utils/distributorEnquiry";
+import { sendDistributorEnquiry } from "../../utils/emailjsEnquiry";
 
 const fields = [
   {
@@ -29,7 +29,8 @@ const fields = [
 export function DistributorSection() {
   const { t } = useTranslation();
   const reduced = useReducedMotion();
-  const [draft, setDraft] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const submitting = useRef(false);
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const id = useId();
   const readValues = (form: HTMLFormElement) => {
@@ -43,10 +44,11 @@ export function DistributorSection() {
     const error = validateEnquiry(readValues(input.form!))[field];
     setErrors((previous) => ({ ...previous, [field]: error }));
   };
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submitting.current) return;
     const form = event.currentTarget;
-    setDraft("");
+    setStatus("idle");
     const values = normalizeEnquiry(readValues(form));
     const nextErrors = validateEnquiry(values);
     setErrors(nextErrors);
@@ -57,10 +59,26 @@ export function DistributorSection() {
       });
       return;
     }
-    const labels = Object.fromEntries(
-      enquiryFields.map((field) => [field, t("partner.fields." + field)]),
-    ) as Record<EnquiryField, string>;
-    setDraft(createEnquiryMailto(values, labels, t("partner.subject")));
+    submitting.current = true;
+    setStatus("submitting");
+    const config = {
+      serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    };
+    try {
+      await sendDistributorEnquiry(values, config);
+      form.reset();
+      setErrors({});
+      setStatus("success");
+    } catch {
+      if (import.meta.env.DEV && (!config.serviceId?.trim() || !config.templateId?.trim() || !config.publicKey?.trim())) {
+        console.warn("Distributor form: required EmailJS environment variables are missing.");
+      }
+      setStatus("error");
+    } finally {
+      submitting.current = false;
+    }
   };
   return (
     <section
@@ -133,6 +151,7 @@ export function DistributorSection() {
           <form
             className={styles.form}
             noValidate
+            aria-busy={status === "submitting"}
             onSubmit={handleSubmit}
             onInput={(event) => {
               if (
@@ -140,7 +159,7 @@ export function DistributorSection() {
                 errors[event.target.name as EnquiryField]
               )
                 validateField(event.target);
-              setDraft("");
+              if (!submitting.current) setStatus("idle");
             }}
           >
             <div className={styles.formHeading}>
@@ -161,6 +180,7 @@ export function DistributorSection() {
                     autoComplete={field.autoComplete}
                     maxLength={field.maxLength}
                     required
+                    readOnly={status === "submitting"}
                     aria-invalid={Boolean(errors[field.name])}
                     aria-describedby={
                       errors[field.name]
@@ -188,21 +208,20 @@ export function DistributorSection() {
               type="submit"
               className="button button-primary"
               aria-describedby="partner-notice"
+              disabled={status === "submitting"}
               whileHover={reduced ? undefined : { y: -2 }}
               whileTap={reduced ? undefined : { scale: 0.99 }}
             >
-              {t("partner.prepareEmail")}
+              {t(status === "submitting" ? "partner.sending" : "partner.submit")}
               <Icon name="arrow" width="18" height="18" />
             </motion.button>
-            {draft && (
-              <div className={styles.result} role="status">
-                <p>{t("partner.emailFallback")}</p>
-                <a className="text-link" href={draft}>
-                  {t("partner.continueEmail")}
-                  <Icon name="arrow" width="18" height="18" />
-                </a>
-              </div>
-            )}
+            <div role="status" aria-live="polite" aria-atomic="true">
+              {(status === "success" || status === "error") && (
+                <div className={styles.result}>
+                  <p>{t(status === "success" ? "partner.success" : "partner.failure")}</p>
+                </div>
+              )}
+            </div>
           </form>
         </Reveal>
       </div>

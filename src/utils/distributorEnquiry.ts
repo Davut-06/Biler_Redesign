@@ -38,31 +38,3 @@ export function validateEnquiry(values: DistributorEnquiry): EnquiryErrors {
   }
   return errors;
 }
-
-function validPayload(values: DistributorEnquiry): DistributorEnquiry {
-  const payload = normalizeEnquiry(values);
-  if (Object.keys(validateEnquiry(payload)).length) throw new Error("Invalid distributor enquiry");
-  return payload;
-}
-
-export function createEnquiryMailto(values: DistributorEnquiry, labels: Record<EnquiryField, string>, subject: string): string {
-  const payload = validPayload(values);
-  const body = enquiryFields.map((field) => `${labels[field]}: ${payload[field]}`).join("\n");
-  return `mailto:biler.distribute@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-// Not enabled in the form until a real backend is deployed. A draft is not a submission.
-export async function postDistributorEnquiry(values: DistributorEnquiry, signal?: AbortSignal): Promise<void> {
-  const payload = validPayload(values);
-  const response = await fetch("/api/distributor-enquiry", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify(payload),
-    signal,
-  });
-  if (!response.ok) throw new Error("Distributor enquiry was not accepted");
-  const result: unknown = await response.json();
-  if (!result || typeof result !== "object" || !("success" in result) || result.success !== true) {
-    throw new Error("Distributor enquiry was not confirmed");
-  }
-}

@@ -128,37 +128,21 @@ Deployment under a subdirectory such as `https://example.com/biler/` requires re
 
 ## Distributor Form and Public Contacts
 
-Public business contacts are displayed in DistributorSection and Footer. The form requires company, Tax ID / TIN, name, phone, and email. It validates all fields and prepares a mailto draft; the visitor reviews and sends it through their email client. The UI explicitly says the enquiry has **not** been submitted. No backend endpoint exists in this repository, and the frontend does not automatically send or persist enquiries.
-
-Validation is implemented in `src/utils/distributorEnquiry.ts`, separate from the form and transport. All values are trimmed and Unicode-normalized (NFC). Company names accept international letters, numbers and ordinary punctuation (2–120 characters); Tax IDs accept international letters, digits, spaces, hyphens, slashes and dots (5–30 characters, at least one digit); names accept international letters, spaces, hyphens and apostrophes (2–80 characters). Phone numbers allow a leading `+`, digits, spaces, parentheses and hyphens, with 7–15 digits. Email requires a local part and a dotted domain without whitespace. Errors appear inline in RU/EN, on blur and on submit; fields already showing errors are revalidated while typing. All errors are checked before either transport can proceed.
-
-### Connecting real email submission
-
-Implement a server endpoint at **POST `/api/distributor-enquiry`** accepting `Content-Type: application/json`:
-
-```json
-{
-  "company": "Example Company",
-  "taxId": "DE123456789",
-  "name": "Alexander",
-  "phone": "+49 (176) 123-4567",
-  "email": "name@company.com"
-}
-```
-
-The backend must independently normalize and validate every field using the rules above; client validation can be bypassed. Send the enquiry to `biler.distribute@gmail.com` through a server-side mail provider, use a verified sender, and set the validated applicant email as Reply-To. Keep credentials exclusively in the server environment or secret manager, never in React code or `VITE_*` variables. Escape user content when generating HTML emails and prevent header injection. Apply request-size limits and abuse/rate limiting. Do not log enquiry bodies unnecessarily.
-
-Return a 2xx JSON response `{ "success": true }` only after the mail provider confirms acceptance; this is not a guarantee of final inbox delivery. Return non-2xx for invalid requests, throttling or provider failure. Configure `/api/` routing before the SPA fallback, so requests cannot silently receive `index.html`. No real emails should be sent during local validation tests.
-
-The exported `postDistributorEnquiry` helper already posts the normalized, validated JSON payload and rejects non-2xx, malformed responses, or responses without `success: true`. It is deliberately **not called** by the current form. After the backend is deployed, replace the `createEnquiryMailto` branch in `DistributorSection` with an awaited call to `postDistributorEnquiry`. Add a pending state and duplicate-submit protection, then show `partner.success` only after this promise resolves; show `partner.failure` on rejection and retain the entered values for retry. These RU/EN messages are supplied but are not displayed by the mailto fallback. Test successful responses, validation failures, network errors, non-JSON responses and provider errors before enabling direct submission. No API keys are needed in the frontend.
-
-Run `node --test tests/distributorEnquiry.test.mjs` for validation and transport tests, in addition to typecheck and build.
+The form sends normalized, validated company, Tax ID / TIN, contact name, phone and email using @emailjs/browser. Existing validation rules are unchanged. Submitting disables the button, locks inputs temporarily, and blocks duplicate submissions. Confirmed EmailJS success clears fields; failures preserve them for retry. Feedback is localized in RU/EN and announced inline. The public contact email link remains independent of submission.
 
 ## Environment Variables
 
-No environment variables are currently required for the frontend.
+Copy .env.example to .env and set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID and VITE_EMAILJS_PUBLIC_KEY. Restart Vite after editing environment files; production values must be set before building. .env is gitignored. These three EmailJS identifiers are public client configuration. Never add Gmail passwords, EmailJS account passwords, SMTP credentials or private keys to frontend variables.
 
-Do not put private credentials in source code or `VITE_*` variables; frontend build values are visible to visitors. Environment files are ignored, with an exception for a future credential-free `.env.example`.
+### EmailJS template and live test
+
+The existing local `.env` service and template IDs were checked and match issue #3: `service_tt44rvc` and `template_t0wz8uj`; a public key is present locally. The IDs are read from environment variables, never hardcoded into the sender. Matching local configuration does not verify that these resources are active or compatible in the EmailJS account. Dashboard access was unavailable, so template compatibility and Gmail delivery remain unverified, including the reported reconnect fix in issue #2. Copied placeholder configuration is rejected locally without an EmailJS request.
+
+In the EmailJS dashboard, verify the service and template destination is biler.distribute@gmail.com and that the template body includes all variables: {{company_name}}, {{inn}}, {{name}}, {{phone_number}}, {{email}}, {{time}}. The repository cannot verify dashboard template content. Add a contact-name line using {{name}} if absent; use {{email}} as Reply-To where appropriate. The timestamp is ISO 8601 UTC.
+
+For a safe live test, coordinate with the recipient first. Run npm run dev, open the printed local URL, go to the distributor form, and use a company name such as `TEST Company`, a synthetic Tax ID such as `TEST12345`, a synthetic contact name and phone, and an email address you control. Submit once and confirm inline success. Check EmailJS Email History and the destination Gmail inbox (including spam) for the actual message and all six template fields, including the contact name. Success in the UI means EmailJS accepted the request; inbox delivery remains a separate check. No live delivery has been verified by automated tests.
+
+Missing configuration shows the localized failure message without sending a request. Automated tests mock EmailJS and never send real email. Run node --test tests/*.test.mjs, npm run typecheck and npm run build. Configure allowed deployment origins and review EmailJS rate limits/spam protection before deployment; CAPTCHA has not been added.
 
 ## Assets and Font Notice
 
@@ -175,6 +159,6 @@ Before deployment, run the type check and production build, then preview the bui
 - Catalogue category/position restoration and browser back/forward.
 - Header active-section underline and mobile menu at 390px.
 - RU/EN names, image loading, responsive layout, keyboard navigation, and reduced motion.
-- Form validation and email-draft preparation with a configured email client.
+- Form validation, EmailJS sending/success/error states, retry behavior, and confirmed delivery in EmailJS History or Gmail.
 
 Dependencies, build output, local browser profiles, review output, environment files, logs, and private key containers are excluded through `.gitignore`. Review staged files before the first public commit; ignore rules do not prevent force-adding files or publishing unrecognized secrets.

@@ -160,14 +160,11 @@
       "emailRequired": "Enter an email address.",
       "emailInvalid": "Enter a valid email address."
     },
-    "prepareEmail": "PREPARE EMAIL",
-    "emailFallback": "Your enquiry has not been submitted. Continue in your email app to review and send it yourself.",
-    "continueEmail": "Review and send in your email app",
-    "success": "Your enquiry has been sent. We will contact you shortly.",
-    "failure": "Your enquiry could not be sent. Please try again.",
-    "notice": "All fields are required. Your enquiry opens as a draft in your email app for you to review and send. This website does not submit or store your details.",
+    "success": "Enquiry sent successfully.",
+    "failure": "We couldn't send your enquiry. Please try again.",
+    "notice": "All fields are required.",
     "submit": "SEND ENQUIRY",
-    "subject": "Biler Drinks — partnership enquiry"
+    "sending": "Sending..."
   },
   "footer": {
     "tagline": "Bold taste. Own character.",

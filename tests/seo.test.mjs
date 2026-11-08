@@ -19,9 +19,9 @@ test("sitemap contains exactly the homepage and all 14 actual product routes", (
   const xml = fs.readFileSync(new URL("../public/sitemap.xml", import.meta.url), "utf8");
   assert.match(xml, /xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9"/);
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
-  assert.deepEqual(urls, ["https://bilerdrinks.com/", ...products.map(p => `https://bilerdrinks.com/products/${p.slug}`)]);
+  assert.deepEqual(urls, ["https://bilerdrinks.com/", ...products.map(p => `https://bilerdrinks.com/products/${p.slug}/`)]);
   assert.equal(new Set(urls).size, 15);
-  assert(urls.includes("https://bilerdrinks.com/products/classic-mohito"));
+  assert(urls.includes("https://bilerdrinks.com/products/classic-mohito/"));
   assert(!urls.some(url => url.includes("mohito-classic")));
   assert.match(fs.readFileSync(new URL("../public/robots.txt", import.meta.url), "utf8"),
     /Sitemap: https:\/\/bilerdrinks.com\/sitemap.xml/);
@@ -34,7 +34,7 @@ for (const language of ["ru", "en"]) {
       const metadata = getPageMetadata(`/products/${product.slug}`, products, t);
       assert.equal(metadata.title, `${locales[language].productNames[product.id]} | Biler Drinks`);
       assert.equal(metadata.description, locales[language].productDetail.descriptions[product.id]);
-      assert.equal(metadata.canonical, `https://bilerdrinks.com/products/${product.slug}`);
+      assert.equal(metadata.canonical, `https://bilerdrinks.com/products/${product.slug}/`);
       assert.equal(metadata.noindex, false);
       assert.deepEqual(getPageMetadata(`/products/${product.slug}/`, products, t), metadata);
       const document = headDocument();

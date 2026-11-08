@@ -33,7 +33,7 @@ export function getPageMetadata(pathname: string, products: readonly Product[], 
   return {
     title: `${t("productNames." + product.id, product.name)} | ${siteName}`,
     description: t("productDetail.descriptions." + product.id, t(product.descriptionKey)),
-    canonical: new URL(`products/${product.slug}`, siteUrl).href,
+    canonical: new URL(`products/${product.slug}/`, siteUrl).href,
     noindex: false,
   };
 }

@@ -1,116 +1,70 @@
-# SEO review for Issue #4
+# SEO and generated product entries
 
-The old `../biler_01/public/index.html` was available for comparison. It supplied
-the generic description “Vitaminized drinks”, a PNG favicon, and an Apple icon.
-It had no canonical, Open Graph, or Twitter metadata. Its Biler `logo.png` has
-been copied unchanged to `public/biler-icon.png` for PNG favicon and Apple icon
-support. The existing WebP favicon remains the preferred icon; the old React
-starter icons were deliberately not reused.
+The homepage has a static Russian title, description, canonical, Open Graph and
+Twitter metadata. The shared `src/utils/seo.ts` logic also updates the document
+head through `SeoMetadata` on route and RU/EN changes, removing stale duplicates.
+The former independent product title effect remains removed.
 
-## Metadata and routes
+## Static product metadata
 
-`index.html` contains the default Russian homepage metadata, including the
-canonical `https://bilerdrinks.com/`. `SeoMetadata` calls the shared updater in
-`src/utils/seo.ts` on initial mount, pathname changes and language changes. It
-updates the existing tags rather than adding competing copies. The former
-product-only title effect has been removed.
+The build now generates 14 real entries at
+`dist/products/<actual-slug>/index.html` using the built homepage as a template.
+`scripts/load-seo.mjs` executes the actual shared metadata logic in Node and reads
+`src/locales/ru.json`; `scripts/load-products.mjs` executes the real catalogue and
+slug mapping while substituting only Vite image imports/globs. No product names,
+slugs or descriptions are duplicated in the generator.
 
-Product names and descriptions come from the same locale keys as the visible
-product pages, matched through `src/data/products.ts`. Query strings, fragments
-and optional trailing slashes are excluded from canonical URLs. Unknown routes
-receive `noindex, follow`, and their canonical and `og:url` are removed. Returning
-to a valid route clears `noindex` and restores the correct tags.
+Product title, description, canonical, og:title, og:description, og:url,
+twitter:title and twitter:description are written into HTML before any browser
+JavaScript executes. HTML metacharacters in text and attributes are escaped.
+Managed tags are replaced without duplicates; social images, icons, built JS/CSS
+entry points and body/mount point remain unchanged. These are HTML entry files
+with static head metadata, not full product-content prerendering or SSR.
 
-The existing i18n initialization and `languageChanged` handler synchronize
-`html.lang` with RU/EN selection; browser tests verify both languages. The URLs
-are shared between languages, with the selection saved locally. No independently
-addressable language URLs exist, so no hreflang or invented language paths were
-added. Static response HTML defaults to Russian.
+Product links, static/runtime canonical and og:url and the 15-URL sitemap use
+trailing slashes, including the actual classic-mohito slug. BrowserRouter accepts
+both slash forms. Queries/fragments are excluded from canonical URLs. robots.txt
+points at https://bilerdrinks.com/sitemap.xml. No invented language URLs or hreflang
+are added. Unknown paths receive no generated page.
 
-## Sitemap
+## Languages and images
 
-`npm run sitemap` regenerates `public/sitemap.xml` from the actual exported product
-array, including its `mohito-classic` → `classic-mohito` slug mapping. The Node
-loader substitutes only Vite's image imports/globs, executing the original
-catalogue and slug logic. The production build runs this generator automatically.
-The sitemap contains 15 URLs: homepage plus all 14 products, with no language,
-hash, filter or unknown routes. No unsupported update dates or priorities are
-asserted. `public/robots.txt` allows crawling and points at the production sitemap.
+Generated HTML is Russian with html.lang=ru. The existing i18n startup restores
+the saved RU/EN selection, updates html.lang and localized metadata, and keeps the
+same canonical URL in both languages. Search/social crawlers that do not run
+JavaScript see Russian metadata. Independently addressable English URLs do not
+exist. Product body content still requires JavaScript.
 
-## Social preview image
+The unchanged 1200x630 PNG at public/og-image.png supplies the shared brand image
+at https://bilerdrinks.com/og-image.png, with Open Graph width, height, descriptive
+alt text, twitter:image and summary_large_image card. Generated route pages retain
+these tags. The PNG favicon and Apple icon remain the Biler logo copied from the
+old site's logo.png; the WebP favicon is preserved. The old production HTML had
+only a generic description and icon links, without canonical or social tags.
 
-The user-supplied `public/og-image.png` was independently checked: it decodes as
-a PNG and measures exactly 1200×630. It is used unchanged as the shared brand
-preview for the homepage and every product page at
-`https://bilerdrinks.com/og-image.png`. Static homepage tags and the existing
-shared metadata updater supply `og:image`, width, height, descriptive image alt
-text, `twitter:image`, and `twitter:card=summary_large_image`. Localized titles,
-descriptions and route-specific canonicals/`og:url` remain independent of this
-fallback image. The existing `SeoMetadata` component needs no changes: it already
-calls the shared updater on route and language changes. Tests check that image
-tags remain unique across repeated updates and that stale duplicates are removed.
+## Verification and limits
 
-Vite copies the image to `dist/og-image.png`; compare it with the source after
-building. Public availability and social service caching still need checking
-after a separately authorized deployment.
+- Run `node --test tests/*.test.mjs`, `npm run typecheck`, `npm run build` and
+  `node tests/route-pages.http.mjs`. Tests cover all products, RU/EN runtime
+  metadata, escaping, duplicate removal and canonical/sitemap consistency. The
+  build verifies all generated pages and real JS/CSS/icon/SEO assets.
+- The no-fallback HTTP fixture checks directory-index routing and refreshes. The
+  existing browser test additionally checks actual React navigation and language
+  switching; see the hosting guide for its local setup. Neither test establishes
+  production cache headers or nginx status codes.
+- nginx-only production serves actual directory indexes. Direct unknown paths
+  should receive its HTTP 404; React's client-side not-found/noindex does not set
+  HTTP status. Optional Apache fallback behavior is separate and may return 200.
+- Raw product HTML now contains product-specific Russian metadata, so social
+  crawlers no longer need JavaScript for those tags. Full visual/product body
+  rendering remains client-side. No framework migration or full prerender was
+  introduced. Validate social services and Search Console after authorized upload.
+- Selected static extensions are cached by the host for 45 days. The unversioned
+  social image may retain earlier content; review caching manually. HTML is not
+  long-term cached under the confirmed hosting setup.
+- The live Yandex verification file is absent locally and MUST be copied unchanged
+  from the existing server before deployment. Never delete or overwrite it.
 
-## Outstanding limitations
-
-- This remains a client-rendered SPA. Product metadata is correct after JavaScript
-  executes, including direct loads served by Vite's fallback. Raw product response
-  HTML still contains homepage metadata. Crawlers that do not execute JavaScript,
-  including many social preview services, will not see product-specific metadata.
-- The unknown-page UI and client-side `noindex` do **not** return HTTP 404. A host
-  that falls back to `index.html` may return HTTP 200. True 404 responses, rewrite
-  configuration, redirects and live deep-link availability remain Issue #5.
-  No deployment configuration has been changed here.
-- Prerendering is feasible for this finite catalogue, but is deferred. A safe
-  implementation must generate real page content and head metadata together,
-  define a default language independent of local storage, avoid browser-only
-  image/scroll/animation assumptions, and coordinate static route resolution and
-  unknown-route status handling with hosting. Metadata-only files would leave
-  empty app shells; a framework or router migration is not warranted for this
-  patch. Review a separate prerender implementation if social previews for
-  individual product URLs are required before release.
-
-Google documents JavaScript metadata and SPA soft-404 limitations in its
-[JavaScript SEO guidance](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).
-
-## Verification and checks before closing
-
-Run:
-
-```text
-npm run sitemap
-node --test tests/*.test.mjs
-npm run typecheck
-npm run build
-```
-
-`tests/seo.test.mjs` checks all products in both languages, sitemap exactness,
-canonical normalization, unknown routes, repeated head updates and metadata
-consistency with the static homepage. Existing EmailJS and validation tests remain
-part of the test suite. No lint command is configured.
-
-For real browser checks, run the dev server and headless Chrome with remote
-debugging on port 9346, then `node tests/seo.browser.mjs`. It defaults to
-`http://127.0.0.1:5174`; set `SEO_TEST_URL` if the server uses another port. Use a
-separate browser profile for testing. It verifies all 14 direct product entries
-in RU/EN, the document language, real React Router navigation through the
-homepage, and recovery from unknown-product noindex. It sends no enquiries.
-
-Before closing Issue #4:
-
-1. Review the supplied social preview image and verify social cards and image
-   HTTP availability after separately authorized deployment.
-2. Decide whether the documented client-rendered product preview limitation is
-   acceptable or whether a separately reviewed prerender change is required.
-3. Review rendered head tags and language switching on representative mobile and
-   desktop product pages; check back/forward and homepage navigation.
-4. After separately authorized deployment, verify robots/sitemap and asset HTTP
-   responses, inspect rendered URLs in Search Console, submit the sitemap and
-   test previews with the target social services. Coordinate real HTTP status
-   checks with Issue #5. Local Vite tests cannot establish production routing.
-
-This change does not modify EmailJS configuration, deployment, or Issues #5,
-#7 or #8, and does not close any issue.
+See [reg.ru deployment safeguards and manual checks](reg-ru-hosting.md). This work
+changes only local build/routing/SEO behavior; it does not deploy, modify EmailJS,
+change credentials, implement CI/CD, or close issues.

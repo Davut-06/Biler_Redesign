@@ -1,130 +1,99 @@
-# reg.ru / ISPmanager SPA hosting (Issue #5)
+# reg.ru nginx-only hosting: generated route pages
 
-The application uses `BrowserRouter`, `/products/:slug` routes, and Vite
-`base: "/"`. The repository previously contained deployment examples in README,
-but no active Apache or Nginx configuration. `public/.htaccess` now provides
-Apache-compatible fallback for a domain-root installation. Vite copies it into
-`dist/.htaccess`, which the production build verifies alongside SEO assets.
+Confirmed production facts: https://bilerdrinks.com uses document root
+`/www/bilerdrinks.com`, nginx only, and directory `index.html` serving. Apache,
+PHP/CGI, `.htaccess` and `mod_rewrite` are unavailable. Selected static extensions
+are cached for 45 days; HTML is not long-term cached. No server configuration,
+DNS, SSL or ISPmanager settings are changed by this implementation.
 
-## What the file does
+## Option B build strategy
 
-- With `mod_rewrite`, requests that match neither an existing file nor an existing
-  directory are internally rewritten to `index.html`. The address bar retains the
-  product URL; React Router then selects the product. There is no external redirect.
-- Existing `robots.txt`, `sitemap.xml`, `og-image.png`, favicons, `/assets/*` and
-  directories bypass the fallback. Missing asset URLs are still eligible for the
-  general fallback, so a missing script may return HTML; use a real filename from
-  the current build when checking asset responses.
-- With `mod_headers`, filenames with Vite's eight-character content fingerprint
-  receive `Cache-Control: public, max-age=31536000, immutable`. This covers the
-  current JS, CSS, image and font output. Do not use filenames resembling Vite
-  fingerprints for mutable public files. The build fails if a generated asset
-  no longer matches this policy, prompting a review if Vite output changes.
-- `index.html`, including the target of internal rewrites, receives
-  `Cache-Control: no-cache, max-age=0, must-revalidate`. It may be stored but must
-  revalidate before reuse. Nonfingerprinted public SEO/icon files receive no
-  long-lived cache policy from this file. Existing host/proxy policies still need
-  checking for those files.
+`npm run build` runs, in order:
 
-Both module-dependent sections use `IfModule`. No `Options`, PHP handlers,
-compression, `Expires`, virtual-host directives, or HTTPS/domain redirects are
-added. Missing modules therefore skip their sections instead of failing on unknown
-directives; missing rewrite support still means product links will not work.
+1. Generate sitemap from the actual products and shared SEO canonical logic.
+2. TypeScript check.
+3. Vite build.
+4. Generate `dist/products/<actual-slug>/index.html` for all 14 catalogue products.
+5. Verify deployment artifacts, static metadata and resource references.
 
-## Hosting requirements and limitations
+Each route file starts with the built homepage HTML, keeping its hashed JS/CSS,
+favicons, social image tags and React mount point. Only product title,
+description, canonical, Open Graph title/description/URL, and Twitter
+title/description are replaced, with HTML escaping and duplicate removal. The
+shared `getPageMetadata` function and Russian locale supply the static metadata.
+This generates real HTML entry files, not server-rendered product body content.
+The interactive UI still requires JavaScript; RU/EN behavior remains client-side.
 
-1. In ISPmanager, confirm the domain's actual document root and web-server mode.
-   When deployment is separately authorized, upload the **contents** of `dist/`
-   into that root, including the hidden `.htaccess`. Enable hidden-file display
-   in the upload client/file manager. Do not deploy the source tree or `.env`.
-2. Review any existing root `.htaccess` before uploading. Preserve host-managed
-   PHP/security/redirect settings and unrelated routes; merge the SPA fallback
-   after existing application-specific routing. A broad fallback can intercept
-   nonexistent `/api` or `/admin` paths if they are used by another application.
-   This repository has no live host configuration to inspect.
-3. Apache must load `mod_rewrite` and permit rewrite directives through
-   `AllowOverride FileInfo` (or an equivalent host allowlist). Header directives
-   also require permission and `mod_headers`. `IfModule` protects against missing
-   modules, **not** forbidden overrides. `AllowOverride None` can silently ignore
-   `.htaccess`; restrictive overrides can produce HTTP 500. Ask reg.ru support to
-   check the domain's error log and allowed directives if this occurs.
-4. ISPmanager supports different server arrangements. Nginx-only hosting ignores
-   `.htaccess`. With Nginx in front of Apache, Nginx may serve assets itself or
-   reject requests without forwarding them. Ask the host to confirm that missing
-   product routes reach Apache and that the front server does not override HTML
-   or fingerprinted-asset cache headers. Do not assume access to Nginx configuration
-   on shared hosting, or replace panel-managed configuration wholesale.
-5. Apache `MultiViews`, if enabled by the host, can interfere with route rewriting.
-   Ask support to disable it for this document root if needed; an `Options`
-   directive is deliberately omitted because shared hosting may forbid it.
-6. These rules assume a domain root and a working directory index for `/`.
-   Subdirectory deployment would also require reviewing Vite base, BrowserRouter
-   and links. A CDN or hosting cache can retain earlier 404/HTML responses; clear
-   those through the hosting panel if needed after an authorized upload.
+Product links, sitemap, canonical and og:url use trailing slashes, for example
+`/products/orange/`. nginx should redirect the slashless directory URL to the
+slash form; confirm that after upload. React Router accepts both URL forms for
+client navigation. nginx needs no fallback rewrite because the directories exist.
+No nginx configuration file has been introduced.
 
-References: Apache documents [rewrite conditions](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html#rewritecond)
-and [header directive permissions](https://httpd.apache.org/docs/2.4/mod/mod_headers.html).
-ISPmanager documents [server modes and .htaccess support](https://www.ispmanager.com/docs/ispmanager/installing-and-changing-a-web-server-in-ispmanager).
+`public/.htaccess` is retained solely for optional Apache compatibility on other
+hosts. It is ignored on this nginx-only production host, including its cache
+headers. Production uses the host's existing 45-day static cache policy. Do not
+expect Apache's one-year immutable policy or HTML revalidation headers on nginx.
+Keep existing hashed assets during an upload so cached/open pages can still load
+older files. The unchanged URL og-image.png may remain cached for 45 days; review
+host cache behavior when changing it. No automated upload or cache purge is added.
 
-## Local verification
+## Mandatory deployment safeguard: Yandex verification
 
-```text
-node --test tests/*.test.mjs
-npm run typecheck
-npm run build
-```
+`public/yandex_9012eb5604d3035e.html` is absent in this checkout. Before ANY
+production deployment, copy the exact existing server file into `public/`,
+rebuild, and verify the resulting `dist/` file is byte-identical. Do not invent
+verification contents. Never delete or overwrite the live verification file.
+The build reports a manual deployment blocker while this source is absent; if it
+is present, verification checks the copy. A successful local build is not approval
+to deploy without preserving that file.
 
-The tests check guarded rewrite conditions and cache policy scope. The production
-build runs `scripts/verify-deployment.mjs` after Vite: `.htaccess`, SEO files and
-icons must match their public sources byte-for-byte, the entry point must exist,
-and generated fingerprints must match the cache rule. No Apache runtime is
-available in this workspace, so these are configuration/artifact checks, not
-proof of Apache behavior. Vite dev/preview fallback does not exercise `.htaccess`.
+## Manual upload and verification (only after separate approval)
 
-## Manual verification after separately authorized deployment
+1. Review all local changes and back up the existing site. Copy the Yandex file
+   as above. Do not upload a replacement verification file or use a mirror/delete
+   deployment that removes server-only files.
+2. Upload the complete CONTENTS of `dist/` into `/www/bilerdrinks.com`, including
+   the full `products/` directory tree and referenced `assets/`. A flat upload
+   of index.html alone does not solve direct product routing. Do not upload source
+   files or environment files. Preserve unrelated live files and older hashed
+   assets; no cleanup script is supplied.
+3. Paste these URLs into a new tab and refresh, including a hard refresh:
+   - https://bilerdrinks.com/products/orange/
+   - https://bilerdrinks.com/products/classic-mohito/
+   - https://bilerdrinks.com/products/bilberry-mohito/
+4. Check that slashless versions redirect to the corresponding directories and
+   that all 14 sitemap URLs return their own HTML. Inspect page source with
+   JavaScript disabled: product title, description, canonical and og:url must
+   already be correct. Then enable JavaScript and verify product UI, RU/EN
+   switching, back/forward, catalogue links and homepage return behavior.
+5. Use DevTools or `curl.exe -I` (`curl -I` outside Windows) to check product
+   documents, robots.txt, sitemap.xml, og-image.png, favicons, Yandex verification
+   and real JS/CSS/image/font URLs from the build. GET responses too: successful
+   status alone does not prove the correct content was returned. Expect HTML not
+   to have the host's 45-day static cache policy. Recheck social previews and the
+   sitemap after authorized upload; cached previews may need refreshing.
 
-In a new browser tab, paste each URL directly, then refresh it (including a hard
-refresh with browser cache disabled):
+## Unknown routes and remaining limitations
 
-- `https://bilerdrinks.com/products/orange`
-- `https://bilerdrinks.com/products/classic-mohito`
-- `https://bilerdrinks.com/products/bilberry-mohito`
+Only catalogue products receive directories. A direct visit to an unknown route
+should receive nginx's real HTTP 404; this depends on the live host's behavior and
+has not been production-tested. It will not render the app's not-found page.
+During client navigation React still shows its not-found UI and noindex metadata,
+but client-side rendering does not set an HTTP response status. An optional Apache
+SPA fallback may return HTTP 200 for unknown paths; it is not used on production.
+There is no universal fallback for future routes: regenerate and upload route
+pages when the catalogue changes. Remove retired route directories only after a
+separate review; this task performs no server cleanup.
 
-Each should retain its URL, return a successful document response and render the
-correct product instead of a host 404. Verify RU/EN switching, product metadata,
-back navigation and homepage links. In DevTools Network check that JS/CSS are
-served with their correct content types, not HTML, and that the document does not
-receive a year-long cache lifetime.
+Local checks:
 
-Check response headers using `curl.exe -I` on Windows or `curl -I` elsewhere:
+`node --test tests/*.test.mjs`, `npm run typecheck`, `npm run build`, then
+`node tests/route-pages.http.mjs`. The HTTP test uses a local directory-index
+server with NO SPA fallback, checking all 14 routes and unknown-route 404s; it does
+not establish production status codes or cache headers. For browser tests run
+`node tests/static-host.mjs` and a separate headless Chrome on debug port 9346,
+then set `SEO_TEST_URL=http://127.0.0.1:5187` and run `node tests/seo.browser.mjs`.
+Do not use Vite dev/preview alone as evidence that the host's direct routing works.
 
-```text
-curl.exe -I https://bilerdrinks.com/products/orange
-curl.exe -I https://bilerdrinks.com/products/classic-mohito
-curl.exe -I https://bilerdrinks.com/products/bilberry-mohito
-curl.exe -I https://bilerdrinks.com/index.html
-curl.exe -I https://bilerdrinks.com/robots.txt
-curl.exe -I https://bilerdrinks.com/sitemap.xml
-curl.exe -I https://bilerdrinks.com/og-image.png
-curl.exe -I https://bilerdrinks.com/biler-icon.png
-```
-
-Expect product documents and index to revalidate, public files to retain their
-actual content types, the social image to remain 1200×630, and XML/TXT requests
-to return their real content. Also open the WebP favicon URL and at least one JS,
-CSS, image and font URL copied from the current `dist/assets/` file listing or
-Network panel. Expect `public, max-age=31536000, immutable` for those fingerprinted
-assets. If Nginx serves them without these headers, the hosting configuration
-needs equivalent cache settings. A successful HEAD alone does not prove the body
-is correct: open or GET the response too.
-
-## Unknown routes are not true HTTP 404s
-
-The fallback also serves `index.html` for `/products/not-a-real-product` and other
-missing paths. It can return **HTTP 200** even though the app renders its not-found
-message and sets client-side `noindex`. This is SPA fallback, not a true HTTP 404.
-Producing genuine unknown-route HTTP 404 responses requires a separately reviewed
-server-aware route list or rendering solution. This patch does not implement it
-or change the SEO implementation.
-
-No deployment has been performed by this change.
+No deployment, CI/CD, credentials or production settings are changed here.

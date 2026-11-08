@@ -1,3 +1,4 @@
+# Optional Apache compatibility only. Production reg.ru is nginx-only and ignores this file.
 # Domain-root SPA. Keep existing files and directories outside the fallback.
 # Missing modules skip these blocks; hosting must enable rewrite for deep links.
 <IfModule mod_rewrite.c>

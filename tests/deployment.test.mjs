@@ -4,7 +4,7 @@ import test from "node:test";
 
 const config = fs.readFileSync(new URL("../public/.htaccess", import.meta.url), "utf8");
 
-test("Apache fallback is module-guarded and requires both a missing file and directory", () => {
+test("optional Apache compatibility fallback is guarded and requires a missing file and directory", () => {
   const block = /<IfModule mod_rewrite\.c>([\s\S]*?)<\/IfModule>/.exec(config)?.[1];
   assert(block, "mod_rewrite must be optional rather than causing an unknown-directive 500");
   const directives = block.split(/\r?\n/).map(line => line.trim()).filter(line => line && !line.startsWith("#"));

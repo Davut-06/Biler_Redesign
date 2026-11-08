@@ -1,4 +1,4 @@
-// Start Vite and a headless Chrome with --remote-debugging-port=9346.
+// Start tests/static-host.mjs (or Vite) and Chrome with --remote-debugging-port=9346.
 // No form submissions or EmailJS requests are made by this test.
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -49,7 +49,7 @@ try {
   for (const language of ["ru", "en"]) {
     const locale = JSON.parse(fs.readFileSync(new URL(`../src/locales/${language}.json`, import.meta.url), "utf8"));
     for (const product of await loadProducts()) {
-      await call("Page.navigate", { url: `${base}/products/${product.slug}` });
+      await call("Page.navigate", { url: `${base}/products/${product.slug}${language === "en" ? "/" : ""}` });
       await until(`!!document.querySelector('button[lang="${language}"]') && !!document.querySelector('[data-detail="${product.slug}"]')`);
       await evaluate(`document.querySelector('button[lang="${language}"]').click()`);
       const title = `${locale.productNames[product.id]} | Biler Drinks`;
@@ -58,13 +58,16 @@ try {
       assert.equal(state.lang, language);
       assert.equal(state.description, locale.productDetail.descriptions[product.id]);
       assert.equal(state.ogDescription, state.description);
-      assert.equal(state.canonical, `https://bilerdrinks.com/products/${product.slug}`);
+      assert.equal(state.canonical, `https://bilerdrinks.com/products/${product.slug}/`);
       assert.equal(state.ogUrl, state.canonical);
       assert.equal(state.ogTitle, title);
       assert.equal(state.twitterTitle, title);
       assert.equal(state.robots, undefined);
       assert.equal(state.canonicalCount, 1);
       assert.equal(state.descriptionCount, 1);
+      await call("Page.reload", { ignoreCache: true });
+      await until(`!!document.querySelector('[data-detail="${product.slug}"]') && document.title===${JSON.stringify(title)}`);
+      assert.equal((await read()).lang, language);
     }
     console.log(`PASS all 14 direct product loads and ${language} metadata/language`);
   }
@@ -72,11 +75,12 @@ try {
   await evaluate(`window.__seoNavigationMarker=true;document.querySelector('main a[href="/#products"]').click()`);
   await until(`location.pathname==='/' && document.title==='Biler Drinks'`);
   assert.equal((await read()).canonical, "https://bilerdrinks.com/");
-  await evaluate(`document.querySelector('a[href="/products/orange"]').click()`);
-  await until(`location.pathname==='/products/orange' && document.title==='Orange | Biler Drinks'`);
+  await evaluate(`document.querySelector('a[href="/products/orange/"]').click()`);
+  await until(`location.pathname==='/products/orange/' && document.title==='Orange | Biler Drinks'`);
   assert.equal(await evaluate("window.__seoNavigationMarker"), true);
   console.log("PASS client navigation product → home → product");
-  await call("Page.navigate", { url: `${base}/products/missing-product` });
+  // Client-side not-found behavior is distinct from nginx's direct HTTP 404.
+  await evaluate(`history.pushState({}, '', '/products/missing-product/');window.dispatchEvent(new PopStateEvent('popstate'))`);
   await until(`document.querySelector('meta[name="robots"]')?.content==='noindex, follow'`);
   assert.equal((await read()).canonicalCount, 0);
   await evaluate(`document.querySelector('main a[href="/#products"]').click()`);

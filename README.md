@@ -77,7 +77,7 @@ public/                   Files copied unchanged into the production build
 vite.config.ts            Vite settings, including the root base path
 ```
 
-Product bottle images live in `src/assets/products/` and are imported through `src/data/products.ts`. Display names and descriptions come from the locale files. Technical IDs and slugs are distinct in some cases: `mohito-classic` maps to `/products/classic-mohito`.
+Product bottle images live in `src/assets/products/` and are imported through `src/data/products.ts`. Display names and descriptions come from the locale files. Technical IDs and slugs are distinct in some cases: `mohito-classic` maps to `/products/classic-mohito/`.
 
 The homepage renders Header, Hero, ProductShowcase, Benefits, DistributorSection, and Footer. Homepage anchors are `#home`, `#products`, `#about`, `#partners`, and `#contacts`. Header scroll-spy and mobile navigation share these section IDs. Catalogue return navigation restores the selected category and saved scroll position.
 
@@ -85,41 +85,39 @@ Preserve stable IDs/slugs, RU/EN key parity, keyboard/focus behavior, reduced-mo
 
 ## Deployment to the Existing Domain
 
-Build locally or in the deployment pipeline, then deploy the **contents of `dist/`** to the site's document root or equivalent static hosting destination. Node.js is needed for building; the generated frontend does not require a Node.js server.
+Production is nginx-only reg.ru hosting at https://bilerdrinks.com, document root
+`/www/bilerdrinks.com`. Apache rewrites do not run there. nginx serves directory
+index.html files, so Option B generates `dist/products/<actual-slug>/index.html`
+for every one of the 14 catalogue routes. Product pages contain accurate static
+Russian SEO metadata and the same React/CSS/JS entry points as the homepage.
 
-The application uses BrowserRouter. The web server must serve existing static files normally and fall back to `/index.html` for client-side application routes. Direct visits and browser refreshes must work for routes such as:
+The build order is sitemap generation, TypeScript check, Vite build, route HTML
+generation, then deployment-artifact verification. Links, canonical/og:url and
+sitemap product URLs end in a slash; React Router supports both forms. Examples:
 
-- `/products/orange`
-- `/products/classic-mohito`
-- `/products/bilberry-mohito`
+- `/products/orange/`
+- `/products/classic-mohito/`
+- `/products/bilberry-mohito/`
 
-The receiving developer should apply the appropriate SPA rewrite/fallback for the actual hosting environment. Preserve unrelated API, admin, and existing-site routes; do not replace existing server configuration wholesale.
+After separate approval, upload the CONTENTS of dist/ (including products/ and
+assets/) to the document root. Do not deploy only the root index.html or mirror
+with deletion. **Before deployment copy the existing server's
+`yandex_9012eb5604d3035e.html` unchanged into public/, then rebuild. It is absent
+locally. Never delete or overwrite the live verification file.** Preserve unrelated
+server files and older hashed assets; never upload .env or the source tree.
 
-### reg.ru / ISPmanager and Apache
+See [reg.ru hosting instructions](docs/reg-ru-hosting.md) for manual direct-load,
+refresh, directory redirect and cache checks, plus the no-fallback local HTTP test.
+nginx caches selected static extensions for 45 days; HTML is not long-term cached.
+`public/.htaccess` remains optional Apache compatibility for other hosts and is
+ignored on production. No nginx configuration, DNS, SSL or ISPmanager changes are
+required or included.
 
-`public/.htaccess` is copied to `dist/.htaccess` by Vite. It provides a module-guarded SPA fallback, preserves existing files/directories, caches Vite fingerprinted assets for one year, and requires HTML revalidation. The production build checks the copied configuration and public assets. Include the hidden file when uploading the contents of `dist/` and merge with any existing host configuration instead of replacing unrelated rules.
-
-See [reg.ru hosting instructions](docs/reg-ru-hosting.md) for ISPmanager requirements, Apache override permissions, Nginx limitations, cache checks and direct-load/refresh verification. An SPA fallback can return HTTP 200 for unknown routes; it does not implement a true HTTP 404.
-
-### Nginx example
-
-Within the appropriate server block, adapt the document root and fallback:
-
-```nginx
-root /path/to/deployed/dist;
-
-location / {
-    try_files $uri $uri/ /index.html;
-}
-```
-
-The Nginx snippet is only an example and has not been installed. Apache configuration is included in the build but has not been deployed or verified on the host. Verify direct product URLs after separately authorized deployment; successful in-app navigation alone does not validate server fallback behavior.
-
-### Base path
-
-`vite.config.ts` uses `base: "/"`, which is correct for deployment at a domain root such as `https://example.com/`. This intended configuration is unchanged.
-
-Deployment under a subdirectory such as `https://example.com/biler/` requires reviewing both Vite's base path and routing/link configuration. Changing Vite's base alone is insufficient because the current router and links assume a root deployment.
+Only known product routes receive entries. Direct unknown routes should receive
+nginx HTTP 404; client-side not-found UI cannot change HTTP status. Metadata is
+static, but product body content still requires JavaScript. Generated metadata
+uses Russian; saved RU/EN selection updates the client UI and head as before.
+Vite base remains / and this build assumes domain-root hosting.
 
 ## Distributor Form and Public Contacts
 

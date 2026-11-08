@@ -74,7 +74,7 @@ export function ProductShowcase() {
             return (
               <Link
                 key={product.id}
-                to={"/products/" + product.slug}
+                to={"/products/" + product.slug + "/"}
                 state={{ catalogueKey: location.key }}
                 onClick={(event) => {
                   if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
